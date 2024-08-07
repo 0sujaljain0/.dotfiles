@@ -1,8 +1,15 @@
+eval "neofetch --size 5%"
+
+
+
+
 export PATH="$PATH":"$HOME/.local/scripts/"
-export PATH=$PATH:$(go env GOPATH)/bin
+#export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:/usr/local/go/bin
 # add to ~/.zshrc
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:/opt/nvim/"
 
 eval "$(starship init zsh)"
 
@@ -47,6 +54,7 @@ setopt hist_find_no_dups
 
 alias ls='ls --color'
 alias tmux='tmux -u'
+alias exercism='~/.local/bin/exercism'
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" 

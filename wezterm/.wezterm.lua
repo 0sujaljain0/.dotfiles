@@ -22,10 +22,11 @@ config.window_padding = {
 --config.color_scheme = "Batman"
 config.colors.background = "#1A1A1A"
 config.font = wezterm.font("JetBrains Mono", {})
-config.font_size = 14.0
+config.font_size = 15.5
 config.use_fancy_tab_bar = false
 config.freetype_load_target = "HorizontalLcd"
 config.hide_tab_bar_if_only_one_tab = true
---config.window_background_opacity = 0.95
+config.window_decorations = "NONE"
+config.window_background_opacity = 0.97
 
 return config
