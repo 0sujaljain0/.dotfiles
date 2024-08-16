@@ -1,8 +1,12 @@
-eval "neofetch --size 5%"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-
-
-
+source ~/repos/powerlevel10k/powerlevel10k.zsh-theme
+#eval "neofetch --ascii_distro Ubuntu_small"
 export PATH="$PATH":"$HOME/.local/scripts/"
 #export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/usr/local/go/bin
@@ -11,7 +15,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:/opt/nvim/"
 
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 plugins=(... git)
 
@@ -55,7 +59,12 @@ setopt hist_find_no_dups
 alias ls='ls --color'
 alias tmux='tmux -u'
 alias exercism='~/.local/bin/exercism'
-
+alias vim="nvim"
+alias vi="nvim"
+alias bootdev="~/go/bin/bootdev"
+alias bat="batcat"
+alias gitc="bat ~/.gitconfig"
+alias zshc="vim ~/.zshrc"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" 
 
@@ -63,3 +72,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 eval "$(fzf --zsh)"
 bindkey -s ^f "tmux-sessionizer\n"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+PATH=~/.console-ninja/.bin:$PATH

@@ -3,30 +3,33 @@ local wezterm = require("wezterm")
 local config = {}
 config.colors = {}
 
-config.default_prog = { '/bin/zsh', '-1' }
+config.default_prog = { "/bin/zsh", "-1" }
 
-wezterm.on("gui-startup", function (cmd)
+wezterm.on("gui-startup", function(cmd)
     local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
     window:gui_window():maximize()
 end)
 
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
 }
-
-
 
 --config.color_scheme = "Batman"
 config.colors.background = "#1A1A1A"
-config.font = wezterm.font("JetBrains Mono", {})
-config.font_size = 15.5
+config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
+----config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+--config.font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
+--config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+--config.font = wezterm.font("DroidSansM Nerd Font", { weight = "Regular" })
+config.font_size = 17.5
 config.use_fancy_tab_bar = false
 config.freetype_load_target = "HorizontalLcd"
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "NONE"
-config.window_background_opacity = 0.97
+config.window_background_opacity = 0.96
+
 
 return config
