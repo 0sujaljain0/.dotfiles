@@ -1,5 +1,4 @@
 local wezterm = require("wezterm")
---local config = wezterm.config_builder()
 local config = {}
 config.colors = {}
 
@@ -17,19 +16,13 @@ config.window_padding = {
     bottom = 0,
 }
 
---config.color_scheme = "Batman"
-config.colors.background = "#1A1A1A"
+config.color_scheme = 'tokyonight'
+config.colors.background = "#101010"
 config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
-----config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
---config.font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
---config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
---config.font = wezterm.font("DroidSansM Nerd Font", { weight = "Regular" })
-config.font_size = 17.5
+config.font_size = 14.0
 config.use_fancy_tab_bar = false
 config.freetype_load_target = "HorizontalLcd"
 config.hide_tab_bar_if_only_one_tab = true
-config.window_decorations = "NONE"
-config.window_background_opacity = 0.96
+config.window_background_opacity = 0.98
 
-
-return config
+return config;
