@@ -27,6 +27,6 @@ alias gstc="vim ~/.dotfiles/ghostty/config"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^y "tmux-sessionizer\n"
 
 source ~/.oh-my-zsh/oh-my-zsh.sh
