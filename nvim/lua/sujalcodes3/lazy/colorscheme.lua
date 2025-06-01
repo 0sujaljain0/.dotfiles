@@ -1,100 +1,84 @@
 function ColorMyPencils(color)
-    color = color or "rose-pine"
-
-    vim.cmd.colorscheme(color)
+    color = color or "vague"
     vim.opt.termguicolors = true
+    vim.cmd.colorscheme(color)
 end
 
 return {
     {
-        "folke/tokyonight.nvim",
+        "vague2k/vague.nvim",
         config = function ()
-            require("tokyonight").setup({
-                style = "storm",
+            require("vague").setup({
                 transparent = true,
-                styles = {
-                    keywords = { bold = true , italic = false }
+                style = {
+                    boolean = "bold",
+                    number = "none",
+                    float = "none",
+                    error = "bold",
+                    comments = "italic",
+                    conditionals = "bold",
+                    functions = "none",
+                    headings = "bold",
+                    operators = "none",
+                    strings = "none",
+                    variables = "none",
+
+                    -- keywords
+                    keywords = "none",
+                    keyword_return = "bold",
+                    keywords_loop = "none",
+                    keywords_label = "bold",
+                    keywords_exception = "none",
+
+                    -- builtin
+                    builtin_constants = "bold",
+                    builtin_functions = "none",
+                    builtin_types = "bold",
+                    builtin_variables = "none",
                 }
             })
+        end
+    },
+    {
+        "sainnhe/everforest",
+        config = function()
+            vim.g.everforest_transparent_background = 2
+            vim.g.everforest_better_performance = 1
         end
     },
     {
         "rose-pine/neovim",
         config = function()
             require("rose-pine").setup({
-                variant = "main", -- auto, main, moon, or dawn
-                dark_variant = "main", -- main, moon, or dawn
-                dim_inactive_windows = false,
-                extend_background_behind_borders = true,
-
-                enable = {
-                    terminal = true,
-                    legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-                    migrations = true, -- Handle deprecated options automatically
-                },
-
+                variant = "moon",
+                dark_variant = "moon",
                 styles = {
-                    bold = true,
-                    italic = false,
                     transparency = true,
-                },
-
-                groups = {
-                    border = "muted",
-                    link = "iris",
-                    panel = "surface",
-
-                    error = "love",
-                    hint = "iris",
-                    info = "foam",
-                    note = "pine",
-                    todo = "rose",
-                    warn = "gold",
-
-                    git_add = "foam",
-                    git_change = "rose",
-                    git_delete = "love",
-                    git_dirty = "rose",
-                    git_ignore = "muted",
-                    git_merge = "iris",
-                    git_rename = "pine",
-                    git_stage = "iris",
-                    git_text = "rose",
-                    git_untracked = "subtle",
-
-                    h1 = "iris",
-                    h2 = "foam",
-                    h3 = "rose",
-                    h4 = "gold",
-                    h5 = "pine",
-                    h6 = "foam",
-                },
-
-                palette = {
-                    -- Override the builtin palette per variant
-                    -- moon = {
-                    --     base = '#18191a',
-                    --     overlay = '#363738',
-                    -- },
-                },
-
-                highlight_groups = {
-                    -- Comment = { fg = "foam" },
-                    -- VertSplit = { fg = "muted", bg = "muted" },
-                },
-
-                before_highlight = function(group, highlight, palette)
-                    -- Disable all undercurls
-                    -- if highlight.undercurl then
-                    --     highlight.undercurl = false
-                    -- end
-                    --
-                    -- Change palette colour
-                    -- if highlight.fg == palette.pine then
-                    --     highlight.fg = palette.foam
-                    -- end
-                end,
+                    italic = false
+                }
             })
-        end,
+        end
     },
+    {
+        "folke/tokyonight.nvim",
+        config = function()
+            require("tokyonight").setup({
+                style = "storm",
+                transparent = true,
+                styles = {
+                    keywords = { bold = true, italic = false }
+                }
+            })
+        end
+
+    },
+    {
+        "savq/melange-nvim",
+    },
+    {
+        "rktjmp/lush.nvim",
+    },
+    {
+        "arcticicestudio/nord-vim"
+    }
 }

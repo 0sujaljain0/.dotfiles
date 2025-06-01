@@ -1,3 +1,4 @@
+_G.brace_command_mode = false
 vim.g.mapleader = " "
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -21,7 +22,8 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<C-y>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<leader>st", "I~<C-c>A~<C-c>")
 
 
 vim.keymap.set("n", "<cmd> TmuxNavigateLeft<CR>", "<C-h>")
@@ -60,3 +62,13 @@ vim.keymap.set("n", "<leader>wp", function ()
     local job_id = vim.bo.channel
     vim.fn.chansend(job_id, { "make watch\r\n" })
 end)
+
+
+vim.keymap.set("n", "<leader>pc", function()
+    local fname = vim.fn.expand("%")
+    local fnameLen = string.len(fname)
+    local movement = string.rep("\\<Left>", fnameLen + 1)
+    _G.brace_command_mode = true
+    vim.cmd("call feedkeys(':!" .. " " .. fname .. "', 'n')")
+    vim.cmd("call feedkeys(\"" .. movement .. "\", 'n')")
+end, { noremap = true, silent = true })

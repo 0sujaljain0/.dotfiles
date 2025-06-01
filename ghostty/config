@@ -1,7 +1,4 @@
-theme = "rose-pine"
 font-synthetic-style = "bold"
 fullscreen
-window-decoration = false
 font-size = 16
-adw-toolbar-style = flat
 background = "#121212"
