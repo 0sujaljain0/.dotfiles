@@ -11,9 +11,12 @@ alias vim="nvim"
 # Other Tools
 alias grep="grep --color"
 
-# Config Sourcing
+# Config Editing
 alias gstc="vim ~/.dotfiles/ghostty/config"
 alias zshc="vim ~/.zshrc"
+
+# Config Sourcing
+alias zshs="source ~/.zshrc"
 
 # Language Aliases:
 alias py="python"

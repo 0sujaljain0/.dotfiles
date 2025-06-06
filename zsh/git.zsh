@@ -14,3 +14,7 @@ function gc() {
 function gp() {
     git push $1 $2
 }
+
+function gdel() {
+    git branch -D $1
+}

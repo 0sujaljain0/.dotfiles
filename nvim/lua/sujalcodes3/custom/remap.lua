@@ -2,7 +2,7 @@ _G.brace_command_mode = false
 vim.g.mapleader = " "
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
-vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>")
+vim.keymap.set("n", "<leader>pv", "<cmd>lua MiniFiles.open()<CR>")
 
 vim.keymap.set("n", "<leader>sa", "ggVG")
 

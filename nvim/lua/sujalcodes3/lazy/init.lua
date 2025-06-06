@@ -12,6 +12,8 @@ return {
         config = function()
             local statusline = require("mini.statusline");
             statusline.setup { use_icons = true }
+            local minifiles = require("mini.files")
+            minifiles.setup()
         end
     },
 	{
