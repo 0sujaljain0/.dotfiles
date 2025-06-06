@@ -25,7 +25,7 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
-alias tmux="env TERM=xterm-256color tmux -u"
+alias tmux="tmux -u"
 
 
 export NVM_DIR="$HOME/.nvm"
