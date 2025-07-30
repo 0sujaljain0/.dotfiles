@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-    color = color or "tokyonight"
+    color = color or "solarized-osaka"
     vim.opt.termguicolors = true
     vim.cmd.colorscheme(color)
 end
@@ -128,7 +128,7 @@ return {
         "rose-pine/neovim",
         config = function()
             require("rose-pine").setup({
-                variant = "moon",
+                variant = "main",
                 dark_variant = "moon",
                 styles = {
                     transparency = true,
@@ -189,5 +189,11 @@ return {
             on_highlights = function(highlights, colors) end,
           })
       end
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        config = function ()
+            vim.opt.background = "dark"
+        end
     }
 }

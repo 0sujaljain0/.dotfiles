@@ -2,7 +2,7 @@ _G.brace_command_mode = false
 vim.g.mapleader = " "
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
-vim.keymap.set("n", "<leader>pv", "<cmd>lua MiniFiles.open()<CR>")
+vim.keymap.set("n", "<leader>pv", "<cmd>Neotree<CR>")
 
 vim.keymap.set("n", "<leader>sa", "ggVG")
 
@@ -33,8 +33,8 @@ vim.keymap.set("n", "<cmd> TmuxNavigateDown<CR>", "<C-j>")
 
 vim.cmd[[command! -nargs=1 Gc lua require'sujalcodes3.custom'.gccompile(<f-args>)]]
 
-vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>");
-vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>");
+vim.keymap.set("n", "<M-J>", "<cmd>cnext<CR>");
+vim.keymap.set("n", "<M-K>", "<cmd>cprev<CR>");
 
 vim.keymap.set("n", "<leader>rcs", "<cmd>lua ColorMyPencils()<CR>");
 

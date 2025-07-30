@@ -81,6 +81,7 @@ return {
 							"gopls",
 							"html",
 							"clangd",
+                            "puppet"
 						},
 						handlers = {
 							function(server_name)
