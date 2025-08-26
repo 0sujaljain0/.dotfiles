@@ -10,6 +10,7 @@ alias vim="nvim"
 
 # Other Tools
 alias grep="grep --color"
+alias dss="diff --side-by-side"
 
 # Config Editing
 alias gstc="vim ~/.dotfiles/ghostty/config"

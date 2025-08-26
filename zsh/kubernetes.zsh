@@ -14,3 +14,7 @@ function kl() {
 function kgp() {
     kubectl get pods
 }
+
+function gpip() { 
+    kubectl get pods -o wide | grep $1 | awk '{ print $1" "$3" "$6 }'
+}

@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-    color = color or "solarized-osaka"
+    color = color or "vague"
     vim.opt.termguicolors = true
     vim.cmd.colorscheme(color)
 end
@@ -102,9 +102,9 @@ return {
                     variables = "none",
             
                     -- keywords
-                    keywords = "none",
+                    keywords = "bold",
                     keyword_return = "bold",
-                    keywords_loop = "none",
+                    keywords_loop = "bold",
                     keywords_label = "bold",
                     keywords_exception = "none",
             
