@@ -4,6 +4,10 @@ function ogdi() {
 function otr() {
     open https://registry.terraform.io/
 }
+function lh() {
+    open http://localhost:$1
+}
+
 function orem() {
     local remote="$1"
     local url

@@ -21,3 +21,5 @@ alias zshs="source ~/.zshrc"
 
 # Language Aliases:
 alias py="python"
+
+alias otpdedo="oathtool -b --totp 4XE4WAU22ZULPQRV"

@@ -31,7 +31,7 @@ function gip() {
       networkInterfaces[].accessConfigs[].natIP
     )"
 
-    return eval "gcloud compute instances describe INSTANCE_NAME --zone=ZONE_NAME --format='json(networkInterfaces)'"
+    return
 }
 
 

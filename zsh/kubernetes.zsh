@@ -18,3 +18,7 @@ function kgp() {
 function gpip() { 
     kubectl get pods -o wide | grep $1 | awk '{ print $1" "$3" "$6 }'
 }
+
+function ardash() {
+    k argo rollouts dashboard -n $1
+}

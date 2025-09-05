@@ -1,10 +1,18 @@
 function ColorMyPencils(color)
-    color = color or "vague"
+    color = color or "onedark"
     vim.opt.termguicolors = true
     vim.cmd.colorscheme(color)
 end
 
 return {
+    { 
+        "navarasu/onedark.nvim",
+        config = function()
+            require("onedark").setup({
+                style = "warmer"
+            })
+        end
+    },
     {
         "scottmckendry/cyberdream.nvim",
         lazy = false,

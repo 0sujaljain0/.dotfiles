@@ -3,5 +3,5 @@ function killport() {
 }
 
 function fproc() {
-    ps aux | grep $1 | grep -v "grep"
+    ps aux | grep -E $1 | grep -v "grep"
 }
