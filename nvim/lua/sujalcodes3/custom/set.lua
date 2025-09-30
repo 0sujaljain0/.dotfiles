@@ -4,12 +4,13 @@ vim.opt.relativenumber = true
 
 -- set the cursor to blockx/
 --vim.opt.guicursor = "i:hor40-Cursor/lCursor, i:ver30"
-vim.opt.guicursor = ""
+--vim.opt.guicursor = ""
 
 vim.opt.listchars = {eol = '↵', tab = '  '}
 vim.opt.list = true
 
 vim.opt.clipboard = "unnamedplus"
+vim.opt.wrap = false
 
 -- tab width
 vim.opt.tabstop = 4

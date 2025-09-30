@@ -9,7 +9,12 @@ return {
         "navarasu/onedark.nvim",
         config = function()
             require("onedark").setup({
-                style = "warmer"
+                style = "warmer",
+                transparent = true,
+                code_style = {
+                    functions = "italic",
+                    keywords = "bold"
+                }
             })
         end
     },
