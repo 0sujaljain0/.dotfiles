@@ -5,3 +5,17 @@ function killport() {
 function fproc() {
     ps aux | grep -E $1 | grep -v "grep"
 }
+
+
+function try() { 
+    if [ "$#" -eq 0 ]; then
+        echo "Usage try <command> [args...]"
+    fi
+
+    until "$@"; do
+        echo "Command failed with exit code "$?" - retrying..."
+        sleep 1
+    done
+
+    echo "Command Successful"
+}

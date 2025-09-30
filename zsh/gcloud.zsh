@@ -34,7 +34,8 @@ function gip() {
     return
 }
 
-
 function pig() {
-    gcloud compute addresses list --filter="address=$1"
+    gcloud compute instances list \
+      --filter="networkInterfaces.accessConfigs.natIP=('${1}')" \
+      --format="value(name,zone)"
 }

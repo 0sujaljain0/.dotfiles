@@ -1,0 +1,7 @@
+theme = "Hopscotch.256"
+fullscreen
+background = "#040404"
+background-opacity = 0.8
+background-blur = 30 
+font-size = 18
+font-thicken
