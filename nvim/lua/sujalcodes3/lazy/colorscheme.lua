@@ -10,14 +10,6 @@ return {
         config = function()
             require("onedark").setup({
                 style = "warmer",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
                 transparent = true
             })
         end
@@ -32,7 +24,6 @@ return {
                 variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
 
                 -- Enable transparent background
->>>>>>> Stashed changes
                 transparent = true,
                 code_style = {
                     functions = "italic",
