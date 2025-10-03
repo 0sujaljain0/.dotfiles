@@ -11,7 +11,10 @@ return {
             require("onedark").setup({
                 style = "warmer",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
                 transparent = true
             })
         end
