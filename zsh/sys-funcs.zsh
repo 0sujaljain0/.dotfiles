@@ -6,6 +6,7 @@ function fproc() {
     ps aux | grep -E $1 | grep -v "grep"
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 function try() { 
     if [ "$#" -eq 0 ]; then
         echo "Usage try <command> [args...]"
@@ -18,6 +19,9 @@ function try() {
 
     echo "Command Successful"
 }
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
