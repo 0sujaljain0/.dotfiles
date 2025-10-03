@@ -5,8 +5,6 @@ function killport() {
 function fproc() {
     ps aux | grep -E $1 | grep -v "grep"
 }
-
-
 function try() { 
     if [ "$#" -eq 0 ]; then
         echo "Usage try <command> [args...]"
@@ -18,4 +16,8 @@ function try() {
     done
 
     echo "Command Successful"
+}
+function cnet() {
+    sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
+    sudo dhclient wlan0 -v
 }
