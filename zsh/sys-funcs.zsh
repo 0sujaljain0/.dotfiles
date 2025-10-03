@@ -5,6 +5,7 @@ function killport() {
 function fproc() {
     ps aux | grep -E $1 | grep -v "grep"
 }
+<<<<<<< Updated upstream
 function try() { 
     if [ "$#" -eq 0 ]; then
         echo "Usage try <command> [args...]"
