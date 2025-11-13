@@ -1,7 +1,9 @@
-theme = "Hopscotch.256"
+theme = Kanagawa Wave
 fullscreen
-background = "#040404"
+font-family = "IosevkaTerm Nerd Font"
+# background = "#14151a"
+background = "#010101"
 background-opacity = 0.8
 background-blur = 30 
 font-size = 18
-font-thicken
+# font-thicken

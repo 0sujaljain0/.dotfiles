@@ -34,3 +34,7 @@ function kall() {
         # eval "kubectx $element; $1"
     done
 }
+
+function svcips() {
+    kubectl get endpoints $1 -n $2 -o jsonpath='{.subsets[*].addresses[*].ip}' | tr ' ' '\n' | sort -u
+}

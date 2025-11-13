@@ -26,3 +26,13 @@ function gsync() {
 
     git checkout $target_to_sync && git pull && git checkout $branch && git merge $target_to_sync
 }
+
+function gcpull() {
+    branch=$1
+    git checkout $branch && git pull
+}
+
+function compare() {
+    mainBranch=$1
+    currentBranch=$(git branch --show-current)
+}

@@ -74,3 +74,7 @@ vim.keymap.set("n", "<leader>pc", function()
     vim.cmd("call feedkeys(':!" .. " " .. fname .. "', 'n')")
     vim.cmd("call feedkeys(\"" .. movement .. "\", 'n')")
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>cqf", function()
+    vim.fn.setqflist({})
+end)

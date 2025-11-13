@@ -8,11 +8,11 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 eval "$(starship init zsh)"
 eval "$(kubectl completion zsh)"
 
+source $HOME/.dotfiles/zsh/kubernetes.zsh
+source $HOME/.dotfiles/zsh/base_custom_aliases.zsh
 source $HOME/.dotfiles/zsh/git.zsh
 source $HOME/.dotfiles/zsh/ssh.zsh
-source $HOME/.dotfiles/zsh/base_custom_aliases.zsh
 source $HOME/.dotfiles/zsh/languages.zsh
-source $HOME/.dotfiles/zsh/kubernetes.zsh
 source $HOME/.dotfiles/zsh/keymaps.zsh
 source $HOME/.dotfiles/zsh/gcloud.zsh
 source $HOME/.dotfiles/zsh/sys-funcs.zsh
@@ -51,3 +51,5 @@ if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sujal.ja/repos/google-cloud-sdk/completion.zsh.inc'; fi
+
+. /Users/sujal.ja/export-esp.sh
