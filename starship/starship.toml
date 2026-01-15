@@ -5,7 +5,7 @@
 add_newline = true
 
 # A minimal left prompt
-format = """$username$localip $kubernetes $directory{$git_branch$git_status}\n$character"""
+format = """$username$localip > $directory{$git_branch$git_status} $kubernetes \n$character"""
 
 # move the rest of the prompt to the right
 right_format = """$status"""
@@ -38,7 +38,7 @@ vicmd_symbol = "[❰](cyan)"
 
 [git_branch]
 format = '[$branch]($style)'
-style = 'bold italic green'
+style = 'bold white'
 
 [python]
 format = '[(\($virtualenv\) )]($style)'
@@ -59,7 +59,7 @@ diverged = '⇕'
 up_to_date = ''
 
 [directory]
-style = "bold #7FFF00"
+style = "bold italic #FFA500"
 format = '\[[$path]($style)\][$read_only]($read_only_style) '
 truncation_length = 2
 # truncation_symbol = ""
