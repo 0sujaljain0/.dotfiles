@@ -1,0 +1,390 @@
+# ┌─────────────────────────────────────────────────────────────────────────────┐
+# │  FROST — vibrant minimal prompt with icons                                 │
+# └─────────────────────────────────────────────────────────────────────────────┘
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$package\
+$c\
+$golang\
+$java\
+$kotlin\
+$lua\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$scala\
+$zig\
+$fill\
+$terraform\
+$docker_context\
+$kubernetes\
+$aws\
+$gcloud\
+$azure\
+$cmd_duration\
+$time
+$character"""
+
+command_timeout = 5000
+add_newline = true
+
+[fill]
+symbol = " "
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                                    PROMPT
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[character]
+success_symbol = "[❯](bold #22d3ee)"
+error_symbol = "[❯](bold #f43f5e)"
+vimcmd_symbol = "[❮](bold #a78bfa)"
+
+[username]
+show_always = true
+style_user = "bold #c084fc"
+style_root = "bold #f43f5e"
+format = "[$user]($style) [in](italic #64748b) "
+disabled = false
+
+[directory]
+style = "bold #38bdf8"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 4
+truncate_to_repo = true
+truncation_symbol = "…/"
+read_only = " 󰌾"
+read_only_style = "#fbbf24"
+home_symbol = "~"
+
+[directory.substitutions]
+"Documents" = "󰈙 docs"
+"Downloads" = " downloads"
+"Developer" = " dev"
+"Projects" = " projects"
+".dotfiles" = " dotfiles"
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                                     GIT
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[git_branch]
+symbol = " "
+style = "bold #c084fc"
+format = "[on]($style) [$symbol$branch]($style) "
+truncation_length = 100
+truncation_symbol = ""
+
+[git_status]
+format = "$all_status$ahead_behind"
+conflicted = "[!](#f43f5e) "
+ahead = "[↑${count}](#4ade80) "
+behind = "[↓${count}](#fb923c) "
+diverged = "[↕](#f43f5e) "
+up_to_date = ""
+untracked = "[?${count}](#64748b) "
+stashed = "[≡${count}](#a78bfa) "
+modified = "[*${count}](#fbbf24) "
+staged = "[+${count}](#4ade80) "
+renamed = "[→${count}](#38bdf8) "
+deleted = "[✗${count}](#f43f5e) "
+
+[git_commit]
+style = "#64748b"
+commit_hash_length = 7
+tag_symbol = "  "
+format = "[$hash$tag]($style) "
+only_detached = true
+
+[git_state]
+style = "bold #fbbf24"
+format = "[$state $progress_current/$progress_total]($style) "
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                                   PACKAGE
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[package]
+disabled = false
+symbol = "󰏗 "
+style = "#94a3b8"
+format = "[$symbol$version]($style) "
+display_private = false
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                                  LANGUAGES
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[c]
+disabled = false
+symbol = " "
+style = "bold #60a5fa"
+format = "[$symbol$version]($style) "
+detect_extensions = ["c", "h"]
+
+[golang]
+disabled = false
+symbol = " "
+style = "bold #22d3ee"
+format = "[$symbol$version]($style) "
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum", "go.work"]
+
+[java]
+disabled = false
+symbol = " "
+style = "bold #f97316"
+format = "[$symbol$version]($style) "
+detect_extensions = ["java", "class", "jar", "gradle", "clj", "cljc"]
+detect_files = ["pom.xml", "build.gradle.kts", "build.sbt", ".java-version"]
+
+[kotlin]
+disabled = false
+symbol = " "
+style = "bold #a78bfa"
+format = "[$symbol$version]($style) "
+detect_extensions = ["kt", "kts"]
+
+[lua]
+disabled = false
+symbol = " "
+style = "bold #2563eb"
+format = "[$symbol$version]($style) "
+detect_extensions = ["lua"]
+detect_files = [".lua-version"]
+
+[nodejs]
+disabled = false
+symbol = " "
+style = "bold #4ade80"
+format = "[$symbol$version]($style) "
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+[python]
+disabled = false
+symbol = " "
+style = "bold #fbbf24"
+format = "[$symbol$version( $virtualenv)]($style) "
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "Pipfile", "setup.py", ".python-version"]
+
+[ruby]
+disabled = false
+symbol = " "
+style = "bold #f43f5e"
+format = "[$symbol$version]($style) "
+detect_extensions = ["rb"]
+detect_files = ["Gemfile", ".ruby-version"]
+
+[rust]
+disabled = false
+symbol = "󱘗 "
+style = "bold #fb923c"
+format = "[$symbol$version]($style) "
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+
+[scala]
+disabled = false
+symbol = " "
+style = "bold #ef4444"
+format = "[$symbol$version]($style) "
+detect_extensions = ["sbt", "scala"]
+detect_files = [".scalaenv", ".sbtenv", "build.sbt"]
+
+[zig]
+disabled = false
+symbol = " "
+style = "bold #f59e0b"
+format = "[$symbol$version]($style) "
+detect_extensions = ["zig"]
+detect_files = ["build.zig"]
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                                INFRASTRUCTURE
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[kubernetes]
+disabled = false
+symbol = "☸ "
+style = "#38bdf8"
+format = "[$symbol$context:$namespace]($style) "
+detect_folders = []
+detect_files = []
+contexts = [
+  { context_pattern = ".*prod.*", style = "bold #f43f5e", symbol = "☸ " },
+  { context_pattern = ".*production.*", style = "bold #f43f5e", symbol = "☸ " },
+  { context_pattern = ".*stag.*", style = "bold #fbbf24", symbol = "☸ " },
+  { context_pattern = ".*dev.*", style = "#4ade80", symbol = "☸ " },
+]
+
+[aws]
+disabled = false
+symbol = "  "
+style = "#ff9900"
+format = "[$symbol$profile/$region]($style) "
+expiration_symbol = "[!]"
+
+[gcloud]
+disabled = false
+symbol = " "
+style = "#4285f4"
+format = "[$symbol$project]($style) "
+[gcloud.region_aliases]
+"us-central1" = "usc1"
+"us-east1" = "use1"
+"us-west1" = "usw1"
+"europe-west1" = "euw1"
+
+[azure]
+disabled = false
+symbol = " "
+style = "#0078d4"
+format = "[$symbol$subscription]($style) "
+
+[terraform]
+disabled = false
+symbol = "󱁢 "
+style = "bold #a78bfa"
+format = "[$symbol$workspace]($style) "
+detect_extensions = ["tf", "tfplan", "tfstate"]
+detect_folders = [".terraform"]
+
+[docker_context]
+disabled = false
+symbol = " "
+style = "#2496ed"
+format = "[$symbol$context]($style) "
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+
+[helm]
+disabled = false
+symbol = "⎈ "
+style = "#0f1689"
+format = "[$symbol$version]($style) "
+detect_files = ["helmfile.yaml", "Chart.yaml"]
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                                   STATUS
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[cmd_duration]
+min_time = 1000
+style = "#737373"
+format = "[took $duration]($style) "
+show_milliseconds = false
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "#525252"
+format = "[$time]($style) "
+
+[jobs]
+symbol = "󰜎 "
+style = "#fbbf24"
+format = "[$symbol$number]($style) "
+number_threshold = 1
+
+[status]
+disabled = false
+style = "bold #f43f5e"
+format = "[✗]($style) "
+
+[sudo]
+disabled = false
+style = "bold #f43f5e"
+format = "[sudo]($style) "
+
+# ─────────────────────────────────────────────────────────────────────────────────
+#                               DISABLED MODULES
+# ─────────────────────────────────────────────────────────────────────────────────
+
+[os]
+disabled = true
+
+[hostname]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[battery]
+disabled = true
+
+[shell]
+disabled = true
+
+[shlvl]
+disabled = true
+
+[pulumi]
+disabled = true
+
+[buf]
+disabled = true
+
+[cmake]
+disabled = true
+
+[conda]
+disabled = true
+
+[crystal]
+disabled = true
+
+[dart]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[fennel]
+disabled = true
+
+[haskell]
+disabled = true
+
+[haxe]
+disabled = true
+
+[julia]
+disabled = true
+
+[meson]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[rlang]
+disabled = true
+
+[swift]
+disabled = true
+
+[gradle]
+disabled = true

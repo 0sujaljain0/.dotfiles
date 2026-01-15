@@ -38,3 +38,12 @@ function kall() {
 function svcips() {
     kubectl get endpoints $1 -n $2 -o jsonpath='{.subsets[*].addresses[*].ip}' | tr ' ' '\n' | sort -u
 }
+
+
+
+alias kc="ktx sc; k"
+alias ks="ktx sg; k"
+alias ko="ktx or; k"
+alias ke="ktx eu; k"
+alias kp="ktx or_poc; k"
+

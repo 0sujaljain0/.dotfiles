@@ -1,180 +1,76 @@
-[aws]
-symbol = "  "
+#
+# prezto - mimic the default prezto prompt (sorin)
+#
 
-[buf]
-symbol = " "
+add_newline = true
 
-[c]
-symbol = " "
+# A minimal left prompt
+format = """$username$localip $kubernetes $directory{$git_branch$git_status}\n$character"""
 
-[cmake]
-symbol = " "
+# move the rest of the prompt to the right
+right_format = """$status"""
 
-[conda]
-symbol = " "
-
-[crystal]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[directory]
-read_only = " 󰌾"
-
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[fennel]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
-[git_branch]
-symbol = " "
-
-[git_commit]
-tag_symbol = '  '
-
-[golang]
-symbol = " "
-
-[guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[hostname]
-ssh_symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[kotlin]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = "󰍛 "
-
-[meson]
-symbol = "󰔷 "
-
-[nim]
-symbol = "󰆥 "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
-[ocaml]
-symbol = " "
-
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
-
-[package]
-symbol = "󰏗 "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[pijul_channel]
-symbol = " "
-
-[python]
-symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = "󱘗 "
-
-[scala]
-symbol = " "
-
-[swift]
-symbol = " "
-
-[zig]
-symbol = " "
-
-[gradle]
-symbol = " "
 
 [gcloud]
-disabled = true
+format = '{gcp::[$account(\($project\))]($style)}'
+
+[localip]
+ssh_only = false
+format = '@[$localipv4](bold #64748b)'
+disabled = false
+
+[kubernetes]
+disabled = false
+format = '{k8s::[$context-$namespace]($style)}'
 
 
+[username]
+format = "{[$user]($style)}"
+show_always = true
+style_root = "bold red"
+style_user = "bold #FFA500"
+disabled = false
+
+[character]
+success_symbol = "[❱](yellow)"
+error_symbol = "[❱](red)"
+vicmd_symbol = "[❰](cyan)"
+
+[git_branch]
+format = '[$branch]($style)'
+style = 'bold italic green'
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
+style = 'white'
+
+[git_status]
+format = '$all_status$ahead_behind'
+ahead = '[⬆](bold purple)'
+behind = '[⬇](bold purple)'
+staged = '[✚](green)'
+deleted = '[✖](red)'
+renamed = '[➜](purple)'
+stashed = '[✭](cyan)'
+untracked = '[?](bold blue)'
+modified = '[!](bold red)'
+conflicted = '[═](yellow)'
+diverged = '⇕'
+up_to_date = ''
+
+[directory]
+style = "bold #7FFF00"
+format = '\[[$path]($style)\][$read_only]($read_only_style) '
+truncation_length = 2
+# truncation_symbol = ""
+# fish_style_pwd_dir_length = 1
+
+[cmd_duration]
+format = '[$duration]($style) '
+
+[line_break]
+disabled = false
+
+[status]
+disabled = false
+symbol = '✘ '

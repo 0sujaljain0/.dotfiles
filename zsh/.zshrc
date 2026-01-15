@@ -9,7 +9,7 @@ eval "$(starship init zsh)"
 eval "$(kubectl completion zsh)"
 
 source $HOME/.dotfiles/zsh/kubernetes.zsh
-source $HOME/.dotfiles/zsh/base_custom_aliases.zsh
+source $HOME/.dotfiles/zsh/tmux.zsh
 source $HOME/.dotfiles/zsh/git.zsh
 source $HOME/.dotfiles/zsh/ssh.zsh
 source $HOME/.dotfiles/zsh/languages.zsh
@@ -18,6 +18,7 @@ source $HOME/.dotfiles/zsh/gcloud.zsh
 source $HOME/.dotfiles/zsh/sys-funcs.zsh
 source $HOME/.dotfiles/zsh/browser_actions.zsh
 source $HOME/.dotfiles/zsh/metrics.zsh
+source $HOME/.dotfiles/zsh/base_custom_aliases.zsh
 
 export TERM="xterm-256color"
 

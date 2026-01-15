@@ -2,7 +2,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
-vim.opt.foldlevel = 99
+vim.opt.foldlevel = 3
 vim.opt.foldnestmax = 4
 vim.opt.foldlevelstart = 1
 
@@ -11,8 +11,8 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 -- set the cursor to blockx/
---vim.opt.guicursor = "i:hor40-Cursor/lCursor, i:ver30"
---vim.opt.guicursor = ""
+-- vim.opt.guicursor = "n-v-c-sm:block,i:hor40,r:hor20,o:hor20,a:nbc"
+vim.opt.guicursor = ""
 
 vim.opt.listchars = {eol = '↵', tab = '  '}
 vim.opt.list = true

@@ -1,14 +1,15 @@
 # FS
 alias ltr="ls -latr"
-alias lz="eza --icons"
+alias lz="eza -l --icons --context --total-size"
 alias lt="eza --tree"
 alias cat="bat --theme base16"
 alias ex="yazi"
+alias uc="sort | uniq -c"
 
 # Sys/Build Tools
 alias m="make"
-alias vim="nvim"
-
+alias v="nvim"
+#
 # Other Tools
 alias grep="grep --color"
 alias dss="diff --side-by-side"
@@ -21,9 +22,10 @@ alias zshc="vim ~/.zshrc"
 alias zshs="source ~/.zshrc"
 
 function hatch() {
-    watch zsh -ic "$*"
+    # 'command' forces the shell to use the binary in your PATH
+    # instead of a function or alias named 'watch'
+    command watch zsh -ic \'${@}\'; exit;
 }
-
 function clp() {
     local text="$*"
     

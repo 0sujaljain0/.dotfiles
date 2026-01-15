@@ -25,7 +25,7 @@ function gip() {
             return
     esac
 
-    gcloud compute instances describe $2 --zone=$ZONE_NAME --format="table(
+    gcloud compute instances describe $2 --zone $ZONE_NAME --format="table(
       networkInterfaces[].name,
       networkInterfaces[].networkIP,
       networkInterfaces[].accessConfigs[].natIP

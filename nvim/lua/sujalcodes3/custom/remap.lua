@@ -78,3 +78,12 @@ end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>cqf", function()
     vim.fn.setqflist({})
 end)
+
+-- Path Editor keybindings (for moving/renaming files on disk)
+vim.keymap.set("n", "<leader>ep", "<cmd>EditPath<CR>", { desc = "Edit current buffer path (move/rename file)" })
+vim.keymap.set("n", "<leader>rf", "<cmd>RenameFile<CR>", { desc = "Rename current file" })
+
+-- Buffer Switch keybindings (for switching which file you're editing)
+vim.keymap.set("n", "<leader>sf", "<cmd>SwitchFile<CR>", { desc = "Switch to edit a different file" })
+vim.keymap.set("n", "<leader>ef", "<cmd>EditFile<CR>", { desc = "Edit a different file in current buffer" })
+vim.keymap.set("n", "<leader>sid", "<cmd>SwitchInDir<CR>", { desc = "Switch to file in same directory" })
