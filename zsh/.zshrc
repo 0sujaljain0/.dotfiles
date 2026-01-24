@@ -1,7 +1,6 @@
 ZSH_THEME="robbyrussell"
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
@@ -37,15 +36,18 @@ export PATH=/opt/puppetlabs/bin:$PATH
 
 alias tmux="tmux -u"
 
-
-# eval "$(rbenv init -)"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Lazy load nvm
+nvm() {
+    unfunction "$0"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    $0 "$@"
+}
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+eval "$(pyenv init - zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sujal.ja/repos/google-cloud-sdk/path.zsh.inc'; fi

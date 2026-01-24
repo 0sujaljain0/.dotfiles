@@ -52,7 +52,4 @@ vim.opt.autoread = true
 
 vim.opt.textwidth = 120
 
--- for obsidian
-vim.opt.conceallevel = 1
-
 vim.filetype.add({ extension = { templ = "templ" } })

@@ -1,30 +1,32 @@
 return {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
+    "obsidian-nvim/obsidian.nvim",
+    version = "*",
     lazy = true,
-    -- ft = "markdown",
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    event = {
-      -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-      -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-
-      "BufReadPre /Users/sujal.ja/Documents/personal/**.md",
-      "BufNewFile /Users/sujal.ja/Documents/personal/**.md",
-    },
+    ft = "markdown",
     dependencies = {
-        -- Required.
         "nvim-lua/plenary.nvim",
-
-        -- see below for full list of optional dependencies 👇
     },
     opts = {
+        legacy_commands = false,
         workspaces = {
             {
+                name = "gettinshitdun.blog",
+                path = "~/main/obsidian_vaults/blog/content/",
+            },
+            {
                 name = "personal",
-                path = "/home/sujalcodes3/Documents/main_vault",
+                path = "~/main/obsidian_vaults/obsidian/",
             },
         },
-
-        -- see below for full list of options 👇
     },
+    config = function(_, opts)
+        -- Set conceallevel for obsidian's UI features (requires 1 or 2)
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "markdown",
+            callback = function()
+                vim.opt_local.conceallevel = 2
+            end,
+        })
+        require("obsidian").setup(opts)
+    end,
 }

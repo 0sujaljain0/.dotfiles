@@ -5,7 +5,7 @@
 add_newline = true
 
 # A minimal left prompt
-format = """$username$localip > $directory{$git_branch$git_status} $kubernetes \n$character"""
+format = """$username$localip > $directory$git_branch$git_status $kubernetes \n$character"""
 
 # move the rest of the prompt to the right
 right_format = """$status"""
@@ -21,14 +21,14 @@ disabled = false
 
 [kubernetes]
 disabled = false
-format = '{k8s::[$context-$namespace]($style)}'
+format = '{[k8s:](#64748b)[$context-$namespace]($style)}'
 
 
 [username]
 format = "{[$user]($style)}"
 show_always = true
 style_root = "bold red"
-style_user = "bold #FFA500"
+style_user = "italic yellow"
 disabled = false
 
 [character]
@@ -37,15 +37,14 @@ error_symbol = "[❱](red)"
 vicmd_symbol = "[❰](cyan)"
 
 [git_branch]
-format = '[$branch]($style)'
-style = 'bold white'
-
+format = '[{](bold)[git:](#64748b)[$branch]($style)'
+style = 'bold underline #eedc58 italic'
 [python]
 format = '[(\($virtualenv\) )]($style)'
 style = 'white'
 
 [git_status]
-format = '$all_status$ahead_behind'
+format = '\[$all_status$ahead_behind\][}](bold white)'
 ahead = '[⬆](bold purple)'
 behind = '[⬇](bold purple)'
 staged = '[✚](green)'
@@ -56,11 +55,11 @@ untracked = '[?](bold blue)'
 modified = '[!](bold red)'
 conflicted = '[═](yellow)'
 diverged = '⇕'
-up_to_date = ''
+up_to_date = '[nil](italic #64748b)'
 
 [directory]
-style = "bold italic #FFA500"
-format = '\[[$path]($style)\][$read_only]($read_only_style) '
+style = "bold #FFA500"
+format = '[\[](bold) [pwd:](#64748b) [$path]($style) [\]](bold)[$read_only]($read_only_style) '
 truncation_length = 2
 # truncation_symbol = ""
 # fish_style_pwd_dir_length = 1
