@@ -6,6 +6,7 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(kubectl completion zsh)"
+eval "$(zoxide init zsh)"
 
 source $HOME/.dotfiles/zsh/kubernetes.zsh
 source $HOME/.dotfiles/zsh/tmux.zsh
@@ -18,6 +19,7 @@ source $HOME/.dotfiles/zsh/sys-funcs.zsh
 source $HOME/.dotfiles/zsh/browser_actions.zsh
 source $HOME/.dotfiles/zsh/metrics.zsh
 source $HOME/.dotfiles/zsh/base_custom_aliases.zsh
+source $HOME/.dotfiles/zsh/terraform.zsh
 
 export TERM="xterm-256color"
 

@@ -9,10 +9,9 @@ vim.opt.foldlevelstart = 1
 -- line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
-
--- set the cursor to blockx/
--- vim.opt.guicursor = "n-v-c-sm:block,i:hor40,r:hor20,o:hor20,a:nbc"
 vim.opt.guicursor = ""
+--vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver40,r-cr:hor20,o:hor50"
+--vim.api.nvim_set_hl(0, 'TermCursor', { fg = '#FFFFFF', bg = '#FF0000' })
 
 vim.opt.listchars = {eol = '↵', tab = '  '}
 vim.opt.list = true

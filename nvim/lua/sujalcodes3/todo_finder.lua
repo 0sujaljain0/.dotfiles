@@ -62,29 +62,13 @@ local function get_todos_from_file(filepath)
 		return todos
 	end
 	
-	-- Check if treesitter parser is available
-	local ts_ok, ts = pcall(require, "nvim-treesitter")
-	if not ts_ok then
-		return todos
-	end
-	
-	local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
-	if not parsers_ok then
-		return todos
-	end
-	
-	-- Check if parser exists for this filetype
-	if not parsers.has_parser(ft) then
-		return todos
-	end
-	
 	-- Create a temporary buffer to parse
 	local bufnr = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
-	vim.api.nvim_buf_set_option(bufnr, "filetype", ft)
+	vim.bo[bufnr].filetype = ft
 	
-	-- Get the parser
-	local parser = parsers.get_parser(bufnr, ft)
+	-- Get the parser using Neovim 0.12's built-in treesitter API
+	local parser = vim.treesitter.get_parser(bufnr, ft)
 	if not parser then
 		vim.api.nvim_buf_delete(bufnr, { force = true })
 		return todos
@@ -309,10 +293,10 @@ local function create_loading_buffer()
 		todo_finder_bufnr = bufnr
 	end
 	
-	-- Set buffer options (these should always work)
-	vim.api.nvim_buf_set_option(bufnr, "buftype", "nofile")
-	vim.api.nvim_buf_set_option(bufnr, "swapfile", false)
-	vim.api.nvim_buf_set_option(bufnr, "filetype", "todofinder")
+	-- Set buffer options
+	vim.bo[bufnr].buftype = "nofile"
+	vim.bo[bufnr].swapfile = false
+	vim.bo[bufnr].filetype = "todofinder"
 	
 	return bufnr
 end
@@ -390,7 +374,7 @@ function M.show_todos(root_dir)
 	
 	-- Show initial loading state
 	update_loading_buffer(bufnr, 0, 1, "Starting scan...")
-	vim.api.nvim_win_set_option(win, "cursorline", false)
+	vim.wo[win].cursorline = false
 	
 	-- Force redraw
 	vim.cmd("redraw")
@@ -771,7 +755,7 @@ function M.show_todos(root_dir)
 	-- Resize window to fit content
 	local new_height = math.min(#lines, vim.o.lines - 4)
 	vim.api.nvim_win_set_height(win, new_height)
-	vim.api.nvim_win_set_option(win, "cursorline", true)
+	vim.wo[win].cursorline = true
 	
 	-- Set cursor to first TODO item initially
 	if #todos > 0 then

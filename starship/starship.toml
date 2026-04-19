@@ -1,5 +1,5 @@
 #
-# prezto - mimic the default prezto prompt (sorin)
+# prezto - mimic the default prezto prompt (sorin) - Tokyo Night Edition
 #
 
 add_newline = true
@@ -10,66 +10,64 @@ format = """$username$localip > $directory$git_branch$git_status $kubernetes \n$
 # move the rest of the prompt to the right
 right_format = """$status"""
 
-
 [gcloud]
 format = '{gcp::[$account(\($project\))]($style)}'
+style = "bold #7aa2f7"
 
 [localip]
 ssh_only = false
-format = '@[$localipv4](bold #64748b)'
+format = '@[$localipv4](bold #565f89)'
 disabled = false
 
 [kubernetes]
 disabled = false
-format = '{[k8s:](#64748b)[$context-$namespace]($style)}'
-
+format = '{[k8s:](#565f89)[$context-$namespace]($style)}'
+style = "bold #bb9af7"
 
 [username]
 format = "{[$user]($style)}"
 show_always = true
-style_root = "bold red"
-style_user = "italic yellow"
+style_root = "bold #f7768e"
+style_user = "italic #e0af68"
 disabled = false
 
 [character]
-success_symbol = "[❱](yellow)"
-error_symbol = "[❱](red)"
-vicmd_symbol = "[❰](cyan)"
+success_symbol = "[❱](#9ece6a)" # Tokyo Green
+error_symbol = "[❱](#f7768e)"   # Tokyo Red
+vicmd_symbol = "[❰](#7dcfff)"   # Tokyo Cyan
 
 [git_branch]
-format = '[{](bold)[git:](#64748b)[$branch]($style)'
-style = 'bold underline #eedc58 italic'
-[python]
-format = '[(\($virtualenv\) )]($style)'
-style = 'white'
+format = '[{](bold #acb0d0)[git:](#565f89)[$branch]($style)'
+style = 'bold underline #e0af68 italic'
 
 [git_status]
-format = '\[$all_status$ahead_behind\][}](bold white)'
-ahead = '[⬆](bold purple)'
-behind = '[⬇](bold purple)'
-staged = '[✚](green)'
-deleted = '[✖](red)'
-renamed = '[➜](purple)'
-stashed = '[✭](cyan)'
-untracked = '[?](bold blue)'
-modified = '[!](bold red)'
-conflicted = '[═](yellow)'
+format = '\[$all_status$ahead_behind\][}](bold #acb0d0)'
+ahead = '[⬆](#bb9af7)'
+behind = '[⬇](#bb9af7)'
+staged = '[✚](#9ece6a)'
+deleted = '[✖](#f7768e)'
+renamed = '[➜](#bb9af7)'
+stashed = '[✭](#7dcfff)'
+untracked = '[?](bold #7aa2f7)'
+modified = '[!](bold #f7768e)'
+conflicted = '[═](#e0af68)'
 diverged = '⇕'
-up_to_date = '[nil](italic #64748b)'
+up_to_date = '[nil](italic #565f89)'
 
 [directory]
-style = "bold #FFA500"
-format = '[\[](bold) [pwd:](#64748b) [$path]($style) [\]](bold)[$read_only]($read_only_style) '
+style = "bold #ff9e64" # Tokyo Orange
+format = '[\[](bold #acb0d0) [pwd:](#565f89) [$path]($style) [\]](bold #acb0d0)[$read_only]($read_only_style) '
 truncation_length = 2
-# truncation_symbol = ""
-# fish_style_pwd_dir_length = 1
 
 [cmd_duration]
 format = '[$duration]($style) '
-
-[line_break]
-disabled = false
+style = "bold #cfc9c2"
 
 [status]
 disabled = false
 symbol = '✘ '
+style = "bold #f7768e"
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
+style = '#9ece6a'

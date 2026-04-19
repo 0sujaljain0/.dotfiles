@@ -1,12 +1,13 @@
 return {
     {
         "windwp/nvim-ts-autotag",
-        ft = {
-            "javascript",
-            "javascriptreact",
-            "typescript",
-            "typescriptreact",
-            "html",
+        event = "InsertEnter",
+        opts = {
+            opts = {
+                enable_close = true,
+                enable_rename = true,
+                enable_close_on_slash = false,
+            },
         },
     },
 }

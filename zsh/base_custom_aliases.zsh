@@ -21,11 +21,16 @@ alias zshc="vim ~/.zshrc"
 # Config Sourcing
 alias zshs="source ~/.zshrc"
 
-function hatch() {
-    # 'command' forces the shell to use the binary in your PATH
-    # instead of a function or alias named 'watch'
-    command watch zsh -ic \'${@}\'; exit;
+# function hatch() {
+#     # 'command' forces the shell to use the binary in your PATH
+#     # instead of a function or alias named 'watch'
+#     command watch zsh -ic \'${@}\'; exit;
+# }
+
+watch() {
+    command watch -- "zsh -ic '$*'"
 }
+
 function clp() {
     local text="$*"
     
@@ -52,6 +57,10 @@ function clp() {
     fi
     
     echo "Copied to clipboard..."
+}
+
+function ak() {
+    awk '{ print \$$1 }'
 }
 
 alias otp="oathtool -b --totp 4XE4WAU22ZULPQRV | clp"
