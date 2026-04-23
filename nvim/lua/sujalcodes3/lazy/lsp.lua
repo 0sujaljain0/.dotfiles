@@ -71,8 +71,7 @@ return {
                 severity_sort = true,
             })
 
-            -- Only keymaps that differ from built-in defaults
-            -- Built-in: K=hover, grn=rename, grr=references, gra=code_action, grt=type_def
+            -- Custom keymaps (in addition to built-in: K=hover, grn=rename, grr=references, gra=code_action, grt=type_def)
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(event)
                     local map = function(mode, lhs, rhs, desc)
@@ -80,16 +79,10 @@ return {
                     end
                     map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
                     map("n", "[d", vim.diagnostic.open_float, "Show Line Diagnostic")
+                    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+                    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
                 end,
             })
         end,
-    },
-    {
-        "saghen/blink.cmp",
-        version = "*",
-        opts = {
-            keymap = { preset = "default" },
-            sources = { default = { "lsp", "path", "snippets", "buffer" } },
-        },
     },
 }

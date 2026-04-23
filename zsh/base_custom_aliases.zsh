@@ -21,6 +21,14 @@ alias zshc="vim ~/.zshrc"
 # Config Sourcing
 alias zshs="source ~/.zshrc"
 
+
+export MANPAGER='nvim +Man!'
+
+# function vman() {
+#     v --cmd "Man ${1}" +only
+# }
+#
+#
 # function hatch() {
 #     # 'command' forces the shell to use the binary in your PATH
 #     # instead of a function or alias named 'watch'

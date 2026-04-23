@@ -1,0 +1,32 @@
+# Focus window (Vim directions)
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# Swap window (Move them)
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
+
+alt - n : yabai -m display --focus next
+alt - p : yabai -m display --focus prev
+
+shift + alt - n : yabai -m window --display next; yabai -m display --focus next
+shift + alt - p : yabai -m window --display prev; yabai -m display --focus prev
+
+
+# Increase window size
+ctrl + alt - l : yabai -m window --resize right:20:0
+ctrl + alt - j : yabai -m window --resize bottom:0:20
+
+# Decrease window size
+ctrl + alt - h : yabai -m window --resize right:-20:0
+ctrl + alt - k : yabai -m window --resize bottom:0:-20
+
+# Toggle fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# Restart yabai (Useful while you're tweaking your config)
+ctrl + alt - r : yabai --restart-service

@@ -1,0 +1,19 @@
+# Set layout to Binary Space Partitioning (tiling)
+yabai -m config layout bsp
+
+# Appearance (since you like the Tokyo Night aesthetic)
+yabai -m config window_shadow on
+yabai -m config window_gap 10
+yabai -m config top_padding 10
+yabai -m config left_padding 10
+yabai -m config right_padding 10
+yabai -m config bottom_padding 10
+
+# Mouse support
+yabai -m config mouse_follows_focus on
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+
+
+echo "yabai configuration loaded.."

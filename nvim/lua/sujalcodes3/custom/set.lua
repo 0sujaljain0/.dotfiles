@@ -5,6 +5,7 @@ vim.opt.foldtext = ""
 vim.opt.foldlevel = 3
 vim.opt.foldnestmax = 4
 vim.opt.foldlevelstart = 1
+vim.opt.wrap = false
 
 -- line numbers
 vim.opt.nu = true

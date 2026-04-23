@@ -64,7 +64,6 @@ function svcips() {
 
 
 
-
 BELGIUM_CONTEXT_ID="e"
 OREGON_CONTEXT_ID="o"
 OREGON_POC_CONTEXT_ID="p"
@@ -129,3 +128,40 @@ alias ksgsvc="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_svcs"
 alias kogsvc="kubectl_ops_handler $OREGON_CONTEXT_ID get_svcs"
 alias kegsvc="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_svcs"
 alias kpgsvc="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_svcs"
+
+
+function kcpsecret() {
+    context_id=$1
+
+    kubectx $context_id
+
+    src=$2
+    target=$3
+
+    srcSplited=( ${(s:/:)src} )
+    srcNamespace=$srcSplited[1]
+    srcSecret=$srcSplited[2]
+
+    targetSplited=( ${(s:/:)target} )
+    targetNamespace=$targetSplited[1]
+    targetSecret=$targetSplited[2]
+
+    if [[ srcSecret -eq "" ]]; then
+        echo "Source Secret is required\nExiting"
+        return
+    fi
+
+    if [[ srcSecret -eq "" ]]; then
+        echo "Source Secret is required\nExiting"
+        return
+    fi
+
+    if [[ targetSecret -eq "" ]]; then
+        targetSecret=srcSecret
+    fi
+
+    cmd="SECRET=\$(ko get secrets/${srcSecret} -o yaml -n ${srcNamespace}) && echo \$SECRET | yq 'del(.metadata[\"creationTimestamp\", \"uid\", \"resourceVersion\"]) | .metadata.namespace = \"${targetNamespace}\" | .metadata.name = \"${targetSecret}\"'"
+
+    echo $cmd
+    eval $cmd
+}

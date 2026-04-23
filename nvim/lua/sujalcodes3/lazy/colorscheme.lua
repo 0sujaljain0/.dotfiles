@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-    color = color or "rose-pine"
+    color = color or "onedark"
     vim.opt.termguicolors = true
     vim.cmd.colorscheme(color)
 end
