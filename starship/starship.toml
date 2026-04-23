@@ -5,7 +5,7 @@
 add_newline = true
 
 # A minimal left prompt
-format = """$username$localip > $directory$git_branch$git_status $kubernetes \n$character"""
+format = """$username$localip / $directory$git_branch$git_status \n$character"""
 
 # move the rest of the prompt to the right
 right_format = """$status"""
@@ -16,7 +16,7 @@ style = "bold #7aa2f7"
 
 [localip]
 ssh_only = false
-format = '@[$localipv4](bold #565f89)'
+format = '[{$localipv4}](bold #565f89)'
 disabled = false
 
 [kubernetes]
@@ -28,7 +28,7 @@ style = "bold #bb9af7"
 format = "{[$user]($style)}"
 show_always = true
 style_root = "bold #f7768e"
-style_user = "italic #e0af68"
+style_user = "#e0af68"
 disabled = false
 
 [character]
@@ -38,21 +38,31 @@ vicmd_symbol = "[❰](#7dcfff)"   # Tokyo Cyan
 
 [git_branch]
 format = '[{](bold #acb0d0)[git:](#565f89)[$branch]($style)'
-style = 'bold underline #e0af68 italic'
+style = 'bold underline #e0af68'
 
 [git_status]
-format = '\[$all_status$ahead_behind\][}](bold #acb0d0)'
-ahead = '[⬆](#bb9af7)'
-behind = '[⬇](#bb9af7)'
-staged = '[✚](#9ece6a)'
-deleted = '[✖](#f7768e)'
-renamed = '[➜](#bb9af7)'
-stashed = '[✭](#7dcfff)'
-untracked = '[?](bold #7aa2f7)'
-modified = '[!](bold #f7768e)'
-conflicted = '[═](#e0af68)'
-diverged = '⇕'
-up_to_date = '[nil](italic #565f89)'
+format = ' $all_status$ahead_behind[}](bold #acb0d0)'
+
+# Movement: Up/Down is standard, but these feel more "dynamic"
+ahead = '[⇡](#bb9af7)'   # Arrow pointing up to the cloud
+behind = '[⇣](#bb9af7)'  # Arrow pulling down from the cloud
+
+# The Index: Staged vs Modified vs Untracked
+staged = '[ ](#9ece6a)'    # Plus inside a square (addition to index)
+modified = '[ ](#f7768e)'  # Circle with a dot (change in existing file)
+untracked = '[](bold #7aa2f7)' # Question mark (Git doesn't know this file)
+
+# Destructive/Changes
+deleted = '[ ](#f7768e)'   # X mark (removal)
+renamed = '[󰁯 ](#bb9af7)'   # Arrow curving right (moved/renamed)
+
+# Special States
+stashed = '[ ](#7dcfff)'    # A package/box (hidden away for later)
+conflicted = '[ ](#e0af68)' # Warning sign or double-exclamation
+diverged = '[󰹹 ](#bb9af7)'   # Parallel lines moving apart (⇕ is also good, but this is cleaner)
+
+# Status
+up_to_date = '[✓](italic #565f89)' # A simple checkmark is more semantic than "nil"
 
 [directory]
 style = "bold #ff9e64" # Tokyo Orange

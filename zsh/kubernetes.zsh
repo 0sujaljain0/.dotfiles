@@ -131,37 +131,35 @@ alias kpgsvc="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_svcs"
 
 
 function kcpsecret() {
-    context_id=$1
+    local context_id=$1
+    local src=$2
+    local target=$3
 
-    kubectx $context_id
+    # Split Source (Namespace/Secret)
+    local srcSplited=( ${(s:/:)src} )
+    local srcNamespace=$srcSplited[1]
+    local srcSecret=$srcSplited[2]
 
-    src=$2
-    target=$3
+    # Split Target (Namespace/Secret)
+    local targetSplited=( ${(s:/:)target} )
+    local targetNamespace=$targetSplited[1]
+    local targetSecret=$targetSplited[2]
 
-    srcSplited=( ${(s:/:)src} )
-    srcNamespace=$srcSplited[1]
-    srcSecret=$srcSplited[2]
-
-    targetSplited=( ${(s:/:)target} )
-    targetNamespace=$targetSplited[1]
-    targetSecret=$targetSplited[2]
-
-    if [[ srcSecret -eq "" ]]; then
-        echo "Source Secret is required\nExiting"
-        return
+    # VALIDATION: Check if variable is empty using -z and $
+    if [[ -z "$srcSecret" ]]; then
+        print "Error: Source Secret name is missing (Format: namespace/secret)\nExiting"
+        return 1
     fi
 
-    if [[ srcSecret -eq "" ]]; then
-        echo "Source Secret is required\nExiting"
-        return
+    # Fallback if target secret name isn't provided
+    if [[ -z "$targetSecret" ]]; then
+        targetSecret=$srcSecret
     fi
 
-    if [[ targetSecret -eq "" ]]; then
-        targetSecret=srcSecret
-    fi
+    print "Processing: $srcNamespace/$srcSecret -> $targetNamespace/$targetSecret"
 
-    cmd="SECRET=\$(ko get secrets/${srcSecret} -o yaml -n ${srcNamespace}) && echo \$SECRET | yq 'del(.metadata[\"creationTimestamp\", \"uid\", \"resourceVersion\"]) | .metadata.namespace = \"${targetNamespace}\" | .metadata.name = \"${targetSecret}\"'"
-
-    echo $cmd
-    eval $cmd
-}
+    # Execution: Use a pipe directly instead of building a string for eval
+    # Using 'select' ensures yq doesn't output junk if ko fails
+    kubectx $context_id && kubectl get secrets/${srcSecret} -o yaml -n ${srcNamespace} | \
+    yq "select(. != null) | .metadata |= (del(.creationTimestamp, .uid, .resourceVersion, .managedFields) | .namespace = \"${targetNamespace}\" | .name = \"${targetSecret}\")" | k apply -f -
+} 
