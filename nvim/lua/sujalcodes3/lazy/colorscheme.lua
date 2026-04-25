@@ -1,5 +1,5 @@
 function ColorMyPencils(color)
-    color = color or "onedark"
+    color = color or "tokyonight"
     vim.opt.termguicolors = true
     vim.cmd.colorscheme(color)
 end
@@ -56,8 +56,8 @@ return {
         "rose-pine/neovim",
         config = function ()
             require("rose-pine").setup({
-                variant = "auto", -- auto, main, moon, or dawn
-                dark_variant = "main", -- main, moon, or dawn
+                variant = "main", -- auto, main, main, or dawn
+                dark_variant = "main", -- main, main, or dawn
                 dim_inactive_windows = false,
                 extend_background_behind_borders = true,
 
