@@ -58,3 +58,5 @@ if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sujal.ja/repos/google-cloud-sdk/completion.zsh.inc'; fi
 
 . /Users/sujal.ja/export-esp.sh
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
