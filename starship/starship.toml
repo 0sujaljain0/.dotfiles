@@ -16,7 +16,7 @@ style = "bold #7aa2f7"
 
 [localip]
 ssh_only = false
-format = '[{$localipv4}](bold #565f89)'
+format = '[@$localipv4](bold #565f89)'
 disabled = false
 
 [kubernetes]
@@ -28,7 +28,7 @@ style = "bold #bb9af7"
 format = "{[$user]($style)}"
 show_always = true
 style_root = "bold #f7768e"
-style_user = "#e0af68"
+style_user = "#7497f0"
 disabled = false
 
 [character]
@@ -50,7 +50,7 @@ behind = '[⇣](#bb9af7)'  # Arrow pulling down from the cloud
 # The Index: Staged vs Modified vs Untracked
 staged = '[ ](#9ece6a)'    # Plus inside a square (addition to index)
 modified = '[ ](#f7768e)'  # Circle with a dot (change in existing file)
-untracked = '[](bold #7aa2f7)' # Question mark (Git doesn't know this file)
+untracked = '[ ](bold #7aa2f7)' # Question mark (Git doesn't know this file)
 
 # Destructive/Changes
 deleted = '[ ](#f7768e)'   # X mark (removal)
@@ -62,10 +62,10 @@ conflicted = '[ ](#e0af68)' # Warning sign or double-exclamation
 diverged = '[󰹹 ](#bb9af7)'   # Parallel lines moving apart (⇕ is also good, but this is cleaner)
 
 # Status
-up_to_date = '[✓](italic #565f89)' # A simple checkmark is more semantic than "nil"
+up_to_date = '[✓ ](italic #9ece6a)' # A simple checkmark is more semantic than "nil"
 
 [directory]
-style = "bold #ff9e64" # Tokyo Orange
+style = "bold #7bd2c3" # Tokyo Orange
 format = '[\[](bold #acb0d0) [pwd:](#565f89) [$path]($style) [\]](bold #acb0d0)[$read_only]($read_only_style) '
 truncation_length = 2
 
@@ -75,9 +75,5 @@ style = "bold #cfc9c2"
 
 [status]
 disabled = false
-symbol = '✘ '
+symbol = 'x '
 style = "bold #f7768e"
-
-[python]
-format = '[(\($virtualenv\) )]($style)'
-style = '#9ece6a'
