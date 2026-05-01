@@ -6,9 +6,9 @@ font-thicken = false
 font-family = MartianMono NF
 font-style = "Bold"
 # font-family = FiraCode Nerd Font Mono
-# background = #010101
-# background-blur true
-# background-opacity = 0.75
+background = #010101
+background-blur = true
+background-opacity = 0.9
 # background-blur-radius = 60
 window-decoration = false
 # fullscreen = true

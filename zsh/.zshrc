@@ -1,3 +1,9 @@
+ZSH_DOTFILES_PATH="$HOME/.dotfiles/zsh"
+COLOR_RESET="\033[0m"
+COLOR_GREEN="\033[32m"
+COLOR_RED="\033[31m"
+
+export WLR_DRM_DEVICES=/dev/dri/by-path/pci-0000:01:00.0-card:/dev/dri/by-path/pci-0000:05:00.0-card
 ZSH_THEME="robbyrussell"
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
@@ -8,18 +14,20 @@ eval "$(starship init zsh)"
 eval "$(kubectl completion zsh)"
 eval "$(zoxide init zsh)"
 
-source $HOME/.dotfiles/zsh/kubernetes.zsh
-source $HOME/.dotfiles/zsh/tmux.zsh
-source $HOME/.dotfiles/zsh/git.zsh
-source $HOME/.dotfiles/zsh/ssh.zsh
-source $HOME/.dotfiles/zsh/languages.zsh
-source $HOME/.dotfiles/zsh/keymaps.zsh
-source $HOME/.dotfiles/zsh/gcloud.zsh
-source $HOME/.dotfiles/zsh/sys-funcs.zsh
-source $HOME/.dotfiles/zsh/browser_actions.zsh
-source $HOME/.dotfiles/zsh/metrics.zsh
-source $HOME/.dotfiles/zsh/base_custom_aliases.zsh
-source $HOME/.dotfiles/zsh/terraform.zsh
+source "$ZSH_DOTFILES_PATH"/hooks.zsh
+source "$ZSH_DOTFILES_PATH"/histry.zsh
+source "$ZSH_DOTFILES_PATH"/kubernetes.zsh
+source "$ZSH_DOTFILES_PATH"/tmux.zsh
+source "$ZSH_DOTFILES_PATH"/git.zsh
+source "$ZSH_DOTFILES_PATH"/ssh.zsh
+source "$ZSH_DOTFILES_PATH"/languages.zsh
+source "$ZSH_DOTFILES_PATH"/keymaps.zsh
+source "$ZSH_DOTFILES_PATH"/gcloud.zsh
+source "$ZSH_DOTFILES_PATH"/sys-funcs.zsh
+source "$ZSH_DOTFILES_PATH"/browser_actions.zsh
+source "$ZSH_DOTFILES_PATH"/metrics.zsh
+source "$ZSH_DOTFILES_PATH"/base_custom_aliases.zsh
+source "$ZSH_DOTFILES_PATH"/terraform.zsh
 
 export TERM="xterm-256color"
 
@@ -36,16 +44,14 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=/opt/puppetlabs/bin:$PATH
 
+
+
 alias tmux="tmux -u"
 
 export NVM_DIR="$HOME/.nvm"
 
-# Lazy load nvm
-nvm() {
-    unfunction "$0"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    $0 "$@"
-}
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -58,5 +64,4 @@ if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/
 if [ -f '/Users/sujal.ja/repos/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sujal.ja/repos/google-cloud-sdk/completion.zsh.inc'; fi
 
 . /Users/sujal.ja/export-esp.sh
-
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

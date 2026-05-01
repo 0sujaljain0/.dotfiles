@@ -1,0 +1,18 @@
+debug {
+    // Force Niri to render natively on the NVIDIA GPU
+    render-drm-device "/dev/dri/by-path/pci-0000:01:00.0-card"
+}
+
+spawn-at-startup "sh" "-c" "wl-paste --type text --watch cliphist store && cliphist list | tail -n +1000 | cliphist delete"
+spawn-at-startup "sh" "-c" "wl-paste --type image --watch cliphist store && cliphist list | tail -n +1000 | cliphist delete"
+
+include "./cfg/windows.kdl"
+include "./cfg/blur.kdl"
+include "./cfg/animation.kdl"
+include "./cfg/autostart.kdl"
+include "./cfg/keybinds.kdl"
+include "./cfg/input.kdl"
+include "./cfg/display.kdl"
+include "./cfg/layout.kdl"
+include "./cfg/rules.kdl"
+include "./cfg/misc.kdl"

@@ -5,6 +5,11 @@ alias gaM="gs --short | grep 'M' | awk '{ print \$2 }' | xargs git add"
 
 bindkey -s '^gc' 'git commit -m ""\C-b'
 
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   eval "$(ssh-agent -s)"
+   ssh-add ~/.ssh/cachy_ssh_personal
+fi
+
 function gco() {
     git checkout $1
 }
