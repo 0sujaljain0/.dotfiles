@@ -1,10 +1,10 @@
 term = "xterm-ghostty"
 theme = Tokyonight Moon 
-# adjust-cell-width = 1
+#adjust-cell-width = 0.8
 font-size = 18
-font-thicken = false
-font-family = MartianMono NF
-font-style = "Bold"
+font-thicken = true
+# font-family = IosevkaTerm Nerd Font
+# font-style = "SemiBold"
 # font-family = FiraCode Nerd Font Mono
 background = #010101
 background-opacity = 0.75
