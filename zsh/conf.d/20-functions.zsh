@@ -1,5 +1,5 @@
 watch() {
-    command watch -- "zsh -ic '$*'"
+    command watch --color -- "zsh -ic '$*'"
 }
 
 function clp() {

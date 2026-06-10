@@ -1,3 +1,8 @@
+# Cursor — bar in shell, reset after every prompt (survives returning from nvim/tmux)
+printf '\e[6 q'
+add-zsh-hook precmd _set_bar_cursor
+_set_bar_cursor() { printf '\e[6 q' }
+
 # Tmux
 bindkey -s '^y' 'tmux-sessionizer\n'
 bindkey -s '^v' 'vim .\n'
@@ -7,7 +12,7 @@ bindkey -s '^gc' 'git commit -m ""\C-b'
 
 # FZF history search (overrides fzf's default ^R with a custom widget)
 fzf-history-widget() {
-    local selected_command=$(history -n 1 | fzf --height 40% --reverse --query="$LBUFFER")
+    local selected_command=$(fc -lrn 1 | awk '!seen[$0]++' | fzf --height 40% --reverse --query="$LBUFFER")
     if [ -n "$selected_command" ]; then
         LBUFFER="$selected_command"
     fi

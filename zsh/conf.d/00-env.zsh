@@ -14,6 +14,8 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:/Users/sujal.ja/main/work/projects/mnet/MOWX_K8S/mowx-k8s/ingress-test/istio-1.30.0/bin"
+export PATH=$HOME/.istioctl/bin:$PATH
 export PATH=/opt/puppetlabs/bin:$PATH
 
 # NVM — lazy loaded on first use of nvm/node/npm/npx
