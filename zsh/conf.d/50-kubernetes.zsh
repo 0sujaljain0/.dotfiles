@@ -61,15 +61,31 @@ function kubectl_ops_handler() {
         $cmd get "$resource_type" ${resource_id:+"$resource_id"} -n "$namespace" -o json | jq '(.spec.containers[] | {type: "container", containerName: .name,containerImage: .image}), (.spec.initContainers[] | {type: "initContainer", containerName: .name,containerImage: .image})'
     fi
 
-    if [[ "$op" = "get_svcs" ]]; then
-        if [[ "$resource_type" != "pod" && "$resource_type" != "pods" ]]; then
-            echo "you can only get containers of a pod, you gave: '$resource_type'"
-        fi
-        $cmd get endpointslices -o json -n "$namespace" | \
-        jq -r --arg id "$resource_id" '.items[] | select(.endpoints[]?.targetRef?.name == $id) | .metadata.labels["kubernetes.io/service-name"]' | \
-        sort -u
-        return
-    fi
+    case $op in
+        "get_svcs")
+            if [[ "$resource_type" != "pod" && "$resource_type" != "pods" ]]; then
+                echo "you can only get containers of a pod, you gave: '$resource_type'"
+            fi
+            $cmd get endpointslices -o json -n "$namespace" | \
+            jq -r --arg id "$resource_id" '.items[] | select(.endpoints[]?.targetRef?.name == $id) | .metadata.labels["kubernetes.io/service-name"]' | \
+            sort -u
+            return
+            ;;
+        "get_labels")
+            $cmd get $resource_type/$resource_id -n $namespace -o jsonpath='{.metadata.labels}' | jq
+            return
+            ;;
+        "get_anno")
+            $cmd get $resource_type/$resource_id -n $namespace -o jsonpath='{.metadata.annotations}' | jq
+            return
+            ;;
+        "get_meta")
+            $cmd get $resource_type/$resource_id -n $namespace -o jsonpath='{.metadata}' | jq
+            return
+            ;;
+
+    esac
+
 
     $cmd $op "$resource_type" ${resource_id:+"$resource_id"} -n "$namespace" $( [[ "$op" == "get" ]] && echo "-o wide --sort-by=.metadata.creationTimestamp" )
 }
@@ -97,6 +113,24 @@ alias ksgsvc="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_svcs"
 alias kogsvc="kubectl_ops_handler $OREGON_CONTEXT_ID get_svcs"
 alias kegsvc="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_svcs"
 alias kpgsvc="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_svcs"
+
+alias kcglabels="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_labels"
+alias ksglabels="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_labels"
+alias koglabels="kubectl_ops_handler $OREGON_CONTEXT_ID get_labels"
+alias keglabels="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_labels"
+alias kpglabels="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_labels"
+
+alias kcganno="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_anno"
+alias ksganno="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_anno"
+alias koganno="kubectl_ops_handler $OREGON_CONTEXT_ID get_anno"
+alias keganno="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_anno"
+alias kpganno="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_anno"
+
+alias kcgmeta="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_meta"
+alias ksgmeta="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_meta"
+alias kogmeta="kubectl_ops_handler $OREGON_CONTEXT_ID get_meta"
+alias kegmeta="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_meta"
+alias kpgmeta="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_meta"
 
 function kcpsecret() {
     local context_id=$1

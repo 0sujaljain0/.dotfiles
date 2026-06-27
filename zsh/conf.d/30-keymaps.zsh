@@ -12,7 +12,7 @@ bindkey -s '^gc' 'git commit -m ""\C-b'
 
 # FZF history search (overrides fzf's default ^R with a custom widget)
 fzf-history-widget() {
-    local selected_command=$(fc -lrn 1 | awk '!seen[$0]++' | fzf --height 40% --reverse --query="$LBUFFER")
+    local selected_command=$(fc -rln 1 | awk ' !seen[$0]++ ' | fzf --height 40% --tiebreak=index --reverse --query="$LBUFFER")
     if [ -n "$selected_command" ]; then
         LBUFFER="$selected_command"
     fi

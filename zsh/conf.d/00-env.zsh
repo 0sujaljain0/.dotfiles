@@ -1,6 +1,7 @@
 export TERM="xterm-256color"
 export MNET="$HOME/main/work/projects/mnet/"
 export MANPAGER='nvim +Man!'
+export FONTDIR=/Users/sujal.ja/Library/Fonts
 
 # Go
 export GOPATH=$HOME/go

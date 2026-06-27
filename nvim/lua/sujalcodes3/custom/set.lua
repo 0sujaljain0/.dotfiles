@@ -11,7 +11,7 @@ vim.opt.wrap = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.guicursor = ""
---vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver40,r-cr:hor20,o:hor50"
+-- vim.opt.guicursor:append("i:hor40-Cursor/lCursor")
 --vim.api.nvim_set_hl(0, 'TermCursor', { fg = '#FFFFFF', bg = '#FF0000' })
 
 vim.opt.listchars = {eol = '↵', tab = '  '}
@@ -39,6 +39,9 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+
+-- Give all floating windows (LSP hover/K, signature help, etc.) a rounded border
+vim.opt.winborder = "rounded"
 
 vim.opt.scrolloff = 8
 
