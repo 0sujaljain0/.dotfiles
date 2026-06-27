@@ -1,11 +1,61 @@
 function ColorMyPencils(color)
-    color = color or "kanagawa"
+    color = color or "koda"
     vim.opt.termguicolors = true
     vim.cmd.colorscheme(color)
 end
 
 return {
-    -- Using lazy.nvim
+    {
+        "oskarnurm/koda.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+            require("koda").setup({
+                transparent = true, -- enable for transparent backgrounds
+
+                -- Set the variants to use when auto-switching based on vim.o.background
+                -- Valid values: 'dark', 'light', 'moss', 'glade'
+                theme = {
+                    dark = "dark",
+                    light = "light",
+                },
+
+                -- Automatically enable highlights only for plugins installed by your plugin manager
+                -- Currently only supports `lazy.nvim`, `mini.deps` and `vim.pack`
+                auto = true,  -- disable to load ALL available plugin highlights
+
+                cache = true, -- caches the theme for better performance
+
+                -- Style to be applied to different syntax groups
+                -- Common use case would be to set either `italic = true` or `bold = true` for a desired group
+                -- See `:help nvim_set_hl` for more valid values
+                styles = {
+                    functions = { bold = false },
+                    keywords  = { bold = true },
+                    keyword_return = { bold = true },
+                    comments  = {},
+                    strings   = {},
+                    constants = {}, -- includes numbers, booleans
+                },
+
+                -- Override colors for the active variant
+                -- Available keys (e.g., 'func') can be found in lua/koda/palette/
+                colors = {
+                    -- func = "#4078F2",
+                    keyword = "#FAD33B",
+                    keyword_return = "#FAD33B",
+                },
+
+                -- You can modify or extend highlight groups using the `on_highlights` configuration option
+                -- Any changes made take effect when highlights are applied
+                on_highlights = function(hl, c)
+                    -- hl.LineNr = { fg = c.info } -- change a specific highlight to use a different palette color
+                    -- hl.Comment = { fg = c.emphasis, italic = true } -- modify a syntax group (add bold, italic, etc)
+                    -- hl.RainbowDelimiterRed = { fg = "#fb2b2b" } -- add a custom highlight group for another plugin
+                end,
+            })
+        end,
+    },
     {
         "metalelf0/black-metal-theme-neovim",
         lazy = false,
