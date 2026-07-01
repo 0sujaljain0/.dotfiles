@@ -1,7 +1,7 @@
 # Cursor — bar in shell, reset after every prompt (survives returning from nvim/tmux)
-printf '\e[6 q'
-add-zsh-hook precmd _set_bar_cursor
-_set_bar_cursor() { printf '\e[6 q' }
+# printf '\e[6 q'
+# add-zsh-hook precmd _set_bar_cursor
+# _set_bar_cursor() { printf '\e[6 q' }
 
 # Tmux
 bindkey -s '^y' 'tmux-sessionizer\n'
