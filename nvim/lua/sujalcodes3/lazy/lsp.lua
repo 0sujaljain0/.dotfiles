@@ -1,3 +1,5 @@
+local utils = require("sujalcodes3.custom.functions")
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -83,6 +85,10 @@ return {
                     map("n", "<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
                 end,
             })
+            vim.keymap.set("n", "<leader>gd", function ()
+                local symbol = vim.fn.input("godoc query: ")
+                utils.run_command_to_scratch_buffer("go doc " .. symbol)
+            end)
         end,
     },
 }
