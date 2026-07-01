@@ -38,7 +38,7 @@ vicmd_symbol = "[❰](#7dcfff)"   # Tokyo Cyan
 
 [git_branch]
 format = '[{](bold #acb0d0)[git:](#565f89)[$branch]($style)'
-style = 'bold underline #e0af68'
+style = 'bold #c3e88d'
 
 [git_status]
 format = ' $all_status$ahead_behind[}](bold #acb0d0)'

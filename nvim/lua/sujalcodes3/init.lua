@@ -4,9 +4,6 @@ require("sujalcodes3.lazy_init")
 
 -- Setup path editor plugin (for moving/renaming files)
 
--- Setup buffer switch plugin (for switching which file you're editing)
-require("sujalcodes3.buffer_switch").setup()
-
 ColorMyPencils()
 
 
