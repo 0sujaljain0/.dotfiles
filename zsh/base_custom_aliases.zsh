@@ -5,6 +5,7 @@ alias lt="eza --tree"
 alias cat="bat --theme base16"
 alias ex="yazi"
 alias uc="sort | uniq -c"
+alias uptsys="sudo pacman -Syu"
 
 # Sys/Build Tools
 alias m="make"
