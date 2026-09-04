@@ -7,5 +7,4 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 source <(fzf --zsh)
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-
 for f in $HOME/.dotfiles/zsh/conf.d/*.zsh(N); do source "$f"; done
