@@ -1,5 +1,52 @@
-watch() {
-    command watch --color -- "zsh -ic '$*'"
+watchcmd () {
+        local interval=3
+        local clear_screen=false
+        local cmd=""
+        _watchcmd_help() {
+                cat <<'EOF'
+watchcmd — repeatedly run a command at a fixed interval.
+
+USAGE
+    watchcmd [-t|--time SECONDS] [-c|--clear] [-h|--help] <command>
+
+OPTIONS
+    -t, --time SECONDS   Interval between runs (default: 3).
+    -c, --clear          Clear screen between runs.
+    -h, --help           Show this help.
+
+EXAMPLES
+    watchcmd 'kubectl get pods'
+    watchcmd -t 5 -c 'df -h'
+EOF
+        }
+        while [[ $# -gt 0 ]]
+        do
+                case $1 in
+                        (-t | --time) interval="$2"
+                                shift 2 ;;
+                        (-c | --clear) clear_screen=true
+                                shift ;;
+                        (-h | --help) _watchcmd_help; return 0 ;;
+                        (*) cmd="$1"
+                                shift ;;
+                esac
+        done
+        if ! [[ "$interval" =~ ^[0-9]+(\.[0-9]+)?$ ]]
+        then
+                echo "Error: Interval must be a number"
+                return 1
+        fi
+        while true
+        do
+                echo `date`
+                if [ "$clear_screen" = true ]
+                then
+                        clear
+                fi
+                eval "$cmd"
+                echo '=========================================='
+                sleep "$interval"
+        done
 }
 
 function clp() {
@@ -59,4 +106,13 @@ function memmax() {
     done
     exec "sort -nr mem.log | head -1"
     exec "rm -rf mem.log"
+}
+
+
+function c-pers() {
+    CLAUDE_CONFIG_DIR=~/.claude-personal claude "$@"
+}
+
+function c-work() {
+    CLAUDE_CONFIG_DIR=~/.claude-work claude "$@"
 }

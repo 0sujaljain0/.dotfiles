@@ -1,6 +1,6 @@
 local M = {}
 
-function M.run_command_to_scratch_buffer(cmd)
+function M.run_command_to_scratch_buffer(cmd, read_only, filetype)
     local output = vim.fn.system(cmd)
     local lines = vim.split(output, "\n")
 
@@ -10,7 +10,9 @@ function M.run_command_to_scratch_buffer(cmd)
 
     vim.api.nvim_win_set_buf(0, buf)
 
-    vim.bo[buf].filetype = "zsh"
+    vim.bo[buf].filetype = filetype
+    vim.bo[buf].readonly = read_only
+    vim.bo[buf].modifiable = not read_only
 end
 
 return M

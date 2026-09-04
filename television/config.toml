@@ -1,3 +1,49 @@
+# ─────────────────────────────────────────────────────────────
+#  television — minimalist UI
+#  no borders · no status bar · flat/transparent · quiet palette
+# ─────────────────────────────────────────────────────────────
+
 [ui]
 ui_scale = 100
-theme = "nord"
+orientation = "landscape"
+theme = "tokyonight"
+
+# ── Input bar ────────────────────────────────────────────────
+[ui.input_bar]
+position = "top"
+prompt = "❯"
+border_type = "none"
+padding = { top = 0, bottom = 0, left = 1, right = 0 }
+
+# ── Results panel ────────────────────────────────────────────
+[ui.results_panel]
+border_type = "none"
+padding = { top = 0, bottom = 0, left = 1, right = 1 }
+
+# ── Preview panel ────────────────────────────────────────────
+[ui.preview_panel]
+size = 55
+border_type = "none"
+padding = { top = 0, bottom = 0, left = 2, right = 1 }
+scrollbar = false
+
+# ── Chrome: hidden ───────────────────────────────────────────
+[ui.status_bar]
+hidden = true
+
+[ui.help_panel]
+hidden = true
+
+# ── Quiet palette ────────────────────────────────────────────
+[ui.theme_overrides]
+background            = "reset"      # transparent: use the terminal's own bg
+text_fg               = "#c8d3f5"   # primary text
+dimmed_text_fg        = "#565f89"   # non-matched rows (recede)
+input_text_fg         = "#c8d3f5"
+result_count_fg       = "#565f89"   # muted counter
+result_name_fg        = "#c8d3f5"
+result_value_fg       = "#565f89"   # secondary path text, muted
+result_line_number_fg = "#565f89"
+match_fg              = "#c3e88d"   # green highlight on matched chars
+selection_bg          = "#2f334d"   # subtle selection bar
+selection_fg          = "#c8d3f5"

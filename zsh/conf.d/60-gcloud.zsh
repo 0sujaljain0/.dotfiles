@@ -13,6 +13,10 @@ fi
 
 command -v gcloud &>/dev/null || return
 
+function get_gke_creds() {
+    gcloud container clusters list --format="value(name, location)" --project mowx-301015 | xargs -n 2 sh -c 'gcloud container clusters get-credentials "$0" --region "$1" --project mowx-301015'
+}
+
 function gip() {
     local zone="$1"
     local ZONE_NAME=""
@@ -34,4 +38,25 @@ function pig() {
     gcloud compute instances list \
       --filter="networkInterfaces.accessConfigs.natIP=('${1}')" \
       --format="value(name,zone)"
+}
+
+
+function gissh() {
+    local resource="$1"
+    entries=( ${(s:/:)resource} )
+    project=$entries[1]
+    zone=$entries[2]
+    vm_name=$entries[3]
+
+    gcloud compute ssh $vm_name --project=$project --zone=$zone --tunnel-through-iap --ssh-key-file=~/.ssh/fleet-health
+}
+
+function gcpstartup() {
+    local resource="$1"
+    entries=( ${(s:/:)resource} )
+    project=$entries[1]
+    zone=$entries[2]
+    vm_name=$entries[3]
+
+    gcloud compute ssh $vm_name --project=$project --zone=$zone --tunnel-through-iap --quiet --ssh-key-file=$HOME/.ssh/fleet-health --ssh-flag="-o BatchMode=yes" --ssh-flag="-o StrictHostKeyChecking=no" --command="sudo google_metadata_script_runner startup" 
 }

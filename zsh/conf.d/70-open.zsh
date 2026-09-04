@@ -4,6 +4,8 @@ function lh()   { open "http://localhost:$1" }
 function opm()  { open "https://mowx-${1}-pm.srv.media.net/" }
 function opx()  { open "https://mowx-${1}-pm.srv.media.net/graph?g0.expr=${2}" }
 
+function oargo() { open "https://mowx-or-argo.srv.media.net/applications/argocd/$1" }
+
 function orem() {
     local remote="$1"
     local url
