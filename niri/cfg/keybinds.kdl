@@ -11,10 +11,10 @@ binds {
     // ─── Applications ───
     Mod+Return                          hotkey-overlay-title="Open Terminal: kitty" { spawn "/home/herdcontrarian/.local/bin/kitty"; }
     Mod+CTRL+Return                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
-    Mod+B                               hotkey-overlay-title="Open Browser: zen" { spawn "zen"; }
+    Mod+B                               hotkey-overlay-title="Open Browser: helium" { spawn "/home/herdcontrarian/Applications/helium-0.14.3.1-x86_64.AppImage"; }
 
         // spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock && sleep 0.5 && niri msg action power-off-monitors"
-    Mod+ALT+L hotkey-overlay-title="Lock & Power Off" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock && sleep 0.5 && niri msg action power-off-monitors"; }
+    Mod+ALT+L hotkey-overlay-title="Lock & Power Off" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock && sleep 10 && niri msg action power-off-monitors"; }
 
     //Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+Q                         hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }

@@ -30,7 +30,7 @@ function tf() { terraform "$@" }
 
 # Python
 alias py="python"
-alias spy=". .venv/bin/activate"
+alias spy=". venv/bin/activate"
 alias pyi="pip install -r requirements.txt"
 
 # OTP (depends on clp from 20-functions.zsh)

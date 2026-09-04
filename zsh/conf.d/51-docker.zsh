@@ -1,3 +1,7 @@
+alias dc="sudo docker compose"
+alias dcrt="dc down;dc up -d"
+alias doc="sudo docker"
+
 command -v docker &>/dev/null || return
 
 function dbmlin() {

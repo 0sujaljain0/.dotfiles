@@ -2,6 +2,18 @@ watch() {
     command watch --color -- "zsh -ic '$*'"
 }
 
+function boot_win() {
+    efibootmgr | rg Windows | awk '{ print $1 }' | grep -oP '(?<=Boot)\d+(?=\*)' | xargs -I {} sudo efibootmgr -n {} && reboot
+}
+
+function install_go() {
+    version=$1
+    tar_path=/tmp/go${version}.tar.gz
+    curl -o $tar_path -L https://go.dev/dl/go${version}.linux-amd64.tar.gz
+    sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf $tar_path
+    sudo rm -rf $tar_path
+}
+
 function clp() {
     local text="$*"
     if [ -z "$text" ]; then
