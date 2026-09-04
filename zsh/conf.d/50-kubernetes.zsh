@@ -37,12 +37,20 @@ OREGON_CONTEXT_ID="o"
 OREGON_POC_CONTEXT_ID="p"
 SINGAPORE_CONTEXT_ID="s"
 CAROLINA_CONTEXT_ID="c"
+OREGON_ARTF_CONTEXT_ID="o_artf"
+CAROLINA_ARTF_CONTEXT_ID="c_artf"
+BELGIUM_ARTF_CONTEXT_ID="e_artf"
+SINGAPORE_ARTF_CONTEXT_ID="s_artf"
 
 function kc() { ktx sc &>/dev/null; k "$@" }
 function ks() { ktx sg &>/dev/null; k "$@" }
 function ko() { ktx or &>/dev/null; k "$@" }
 function ke() { ktx eu &>/dev/null; k "$@" }
 function kp() { ktx or_poc &>/dev/null; k "$@" }
+function ko_artf() { ktx or_artf &>/dev/null; k "$@"}
+function ks_artf() { ktx sg_artf &>/dev/null; k "$@"}
+function kc_artf() { ktx sc_artf &>/dev/null; k "$@"}
+function ke_artf() { ktx eu_artf &>/dev/null; k "$@"}
 
 function kubectl_ops_handler() {
     context_id=$1
@@ -83,6 +91,9 @@ function kubectl_ops_handler() {
             $cmd get $resource_type/$resource_id -n $namespace -o jsonpath='{.metadata}' | jq
             return
             ;;
+        "argo_rollouts")
+            $cmd get 
+            ;;
 
     esac
 
@@ -95,42 +106,80 @@ alias ksg="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get"
 alias kog="kubectl_ops_handler $OREGON_CONTEXT_ID get"
 alias keg="kubectl_ops_handler $BELGIUM_CONTEXT_ID get"
 alias kpg="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get"
+alias ko_artfg="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID get"
+alias ks_artfg="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID get"
+alias kc_artfg="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID get"
+alias ke_artfg="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID get"
 
 alias kcd="kubectl_ops_handler $CAROLINA_CONTEXT_ID describe"
 alias ksd="kubectl_ops_handler $SINGAPORE_CONTEXT_ID describe"
 alias kod="kubectl_ops_handler $OREGON_CONTEXT_ID describe"
 alias ked="kubectl_ops_handler $BELGIUM_CONTEXT_ID describe"
 alias kpd="kubectl_ops_handler $OREGON_POC_CONTEXT_ID describe"
+alias ko_artfd="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID describe"
+alias ks_artfd="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID describe"
+alias kc_artfd="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID describe"
+alias ke_artfd="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID describe"
 
 alias kcgcont="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_containers"
 alias ksgcont="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_containers"
 alias kogcont="kubectl_ops_handler $OREGON_CONTEXT_ID get_containers"
 alias kegcont="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_containers"
 alias kpgcont="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_containers"
+alias ko_artfgcont="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID get_containers"
+alias ks_artfgcont="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID get_containers"
+alias kc_artfgcont="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID get_containers"
+alias ke_artfgcont="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID get_containers"
 
 alias kcgsvc="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_svcs"
 alias ksgsvc="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_svcs"
 alias kogsvc="kubectl_ops_handler $OREGON_CONTEXT_ID get_svcs"
 alias kegsvc="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_svcs"
 alias kpgsvc="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_svcs"
+alias ko_artfgetsvc="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID get_svcs"
+alias ks_artfgetsvc="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID get_svcs"
+alias kc_artfgetsvc="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID get_svcs"
+alias ke_artfgetsvc="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID get_svcs"
 
 alias kcglabels="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_labels"
 alias ksglabels="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_labels"
 alias koglabels="kubectl_ops_handler $OREGON_CONTEXT_ID get_labels"
 alias keglabels="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_labels"
 alias kpglabels="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_labels"
+alias ko_artfglabels="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID get_labels"
+alias ks_artfglabels="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID get_labels"
+alias ke_artfglabels="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID get_labels"
+alias kc_artfglabels="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID get_labels"
 
 alias kcganno="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_anno"
 alias ksganno="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_anno"
 alias koganno="kubectl_ops_handler $OREGON_CONTEXT_ID get_anno"
 alias keganno="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_anno"
 alias kpganno="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_anno"
+alias ko_artfganno="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID get_anno"
+alias ks_artfganno="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID get_anno"
+alias ke_artfganno="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID get_anno"
+alias kc_artfganno="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID get_anno"
 
 alias kcgmeta="kubectl_ops_handler $CAROLINA_CONTEXT_ID get_meta"
 alias ksgmeta="kubectl_ops_handler $SINGAPORE_CONTEXT_ID get_meta"
 alias kogmeta="kubectl_ops_handler $OREGON_CONTEXT_ID get_meta"
 alias kegmeta="kubectl_ops_handler $BELGIUM_CONTEXT_ID get_meta"
 alias kpgmeta="kubectl_ops_handler $OREGON_POC_CONTEXT_ID get_meta"
+alias ko_artfgmeta="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID get_meta"
+alias ks_artfgmeta="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID get_meta"
+alias ke_artfgmeta="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID get_meta"
+alias kc_artfgmeta="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID get_meta"
+
+alias kcarg="kubectl_ops_handler $CAROLINA_CONTEXT_ID argo_rollouts"
+alias ksarg="kubectl_ops_handler $SINGAPORE_CONTEXT_ID argo_rollouts"
+alias koarg="kubectl_ops_handler $OREGON_CONTEXT_ID argo_rollouts"
+alias kearg="kubectl_ops_handler $BELGIUM_CONTEXT_ID argo_rollouts"
+alias kparg="kubectl_ops_handler $OREGON_POC_CONTEXT_ID argo_rollouts"
+alias ko_artfarg="kubectl_ops_handler $OREGON_ARTF_CONTEXT_ID argo_rollouts"
+alias ks_artfarg="kubectl_ops_handler $SINGAPORE_ARTF_CONTEXT_ID argo_rollouts"
+alias ke_artfarg="kubectl_ops_handler $BELGIUM_ARTF_CONTEXT_ID argo_rollouts"
+alias kc_artfarg="kubectl_ops_handler $CAROLINA_ARTF_CONTEXT_ID argo_rollouts"
 
 function kcpsecret() {
     local context_id=$1

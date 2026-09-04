@@ -87,7 +87,7 @@ return {
             })
             vim.keymap.set("n", "<leader>gd", function ()
                 local symbol = vim.fn.input("godoc query: ")
-                utils.run_command_to_scratch_buffer("go doc " .. symbol)
+                utils.run_command_to_scratch_buffer("go doc " .. symbol, true, "go")
             end)
         end,
     },

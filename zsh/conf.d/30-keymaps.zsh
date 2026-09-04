@@ -9,6 +9,7 @@ bindkey -s '^v' 'vim .\n'
 
 # Git
 bindkey -s '^gc' 'git commit -m ""\C-b'
+bindkey -s '^gP' 'git push -f\n'
 
 # FZF history search (overrides fzf's default ^R with a custom widget)
 fzf-history-widget() {

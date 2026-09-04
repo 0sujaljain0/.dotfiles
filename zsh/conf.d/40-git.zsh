@@ -1,9 +1,16 @@
 command -v git &>/dev/null || return
 
+export GOPRIVATE="tree.mn/*"
+export GONOSUMCHECK="tree.mn/*"
+export GONOSUMDB="tree.mn/*"
+export GOINSECURE="tree.mn/*"
+
+
 alias gitc="cat ~/.gitconfig"
 alias gs="git status"
 alias gaM="gs --short | grep 'M' | awk '{ print \$2 }' | xargs git add"
 alias gnew="git checkout -b"
+alias gpf="git push -f"
 
 function gco() { git checkout $1 }
 function gaa() { git add . }

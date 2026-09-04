@@ -13,12 +13,16 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
 
+export ZIGROOT=/usr/local/zig
+
 # PATH
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.local/scripts/"
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$ZIGROOT/zig
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$PATH:/Users/sujal.ja/main/work/projects/mnet/MOWX_K8S/mowx-k8s/ingress-test/istio-1.30.0/bin"
 export PATH=$HOME/.istioctl/bin:$PATH
