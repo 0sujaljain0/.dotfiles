@@ -1,17 +1,17 @@
 #!/bin/sh
-# ~/.config/tmux/git-segment.sh
-# usage: git-segment.sh <path> <client_width> [gold] [accent] [muted] [border] [green] [red]
+# ~/.dotfiles/scripts/git-segments.sh
+# usage: git-segments.sh <path> <client_width> <pill_bg> <gold> <orange> <muted> <green> <red>
 #
-# Prints a styled git segment for tmux's status line, sized to the client width:
+# Emits a rounded "pill" for tmux's status line, or nothing outside a git repo.
 #   < 70 cols  : nothing
-#   < 110 cols :  branch ●                (dot = anything dirty)
-#   < 140 cols :  branch ↑1 ↓2 +3 !2 ?1 ⚑1
-#   otherwise  : ...plus (owner/repo)
+#   < 110 cols :   branch ●               (dot = anything dirty)
+#   < 140 cols :   branch ↑1 ↓2 +3 !2 ?1 ⚑1
+#   otherwise  : ...plus  owner/repo
 
 path=$1
 width=${2:-200}
-gold=${3:-yellow}   accent=${4:-magenta} muted=${5:-brightblack}
-border=${6:-brightblack} green=${7:-green} red=${8:-red}
+bg=${3:-black} gold=${4:-yellow} orange=${5:-magenta} muted=${6:-brightblack}
+green=${7:-green} red=${8:-red}
 
 [ "$width" -lt 70 ] 2>/dev/null && exit 0
 cd "$path" 2>/dev/null || exit 0
@@ -41,7 +41,7 @@ trunc() { # trunc <string> <max>
 dirty=""
 [ "$conflicts" -gt 0 ] && dirty="$dirty #[fg=$red]✗$conflicts"
 [ "$staged"    -gt 0 ] && dirty="$dirty #[fg=$green]+$staged"
-[ "$unstaged"  -gt 0 ] && dirty="$dirty #[fg=$accent]!$unstaged"
+[ "$unstaged"  -gt 0 ] && dirty="$dirty #[fg=$orange]!$unstaged"
 [ "$untracked" -gt 0 ] && dirty="$dirty #[fg=$muted]?$untracked"
 [ "$stashes"   -gt 0 ] && dirty="$dirty #[fg=$muted]⚑$stashes"
 
@@ -52,17 +52,20 @@ sync=""
 branch_color=$gold
 [ "$conflicts" -gt 0 ] && branch_color=$red
 
+open="#[fg=$bg,bg=default]#[bg=$bg]"
+close="#[fg=$bg,bg=default] "
+
 if [ "$width" -lt 110 ]; then
-  mark=""; [ -n "$dirty" ] && mark=" #[fg=$accent]●"
-  printf '#[fg=%s,bold] %s%s #[fg=%s,nobold]│' "$branch_color" "$(trunc "$head" 18)" "$mark" "$border"
+  mark=""; [ -n "$dirty" ] && mark=" #[fg=$orange]●"
+  printf '%s#[fg=%s,bold] %s#[nobold]%s%s' "$open" "$branch_color" "$(trunc "$head" 18)" "$mark" "$close"
   exit 0
 fi
 
 remote=""
 if [ "$width" -ge 140 ]; then
   r=$(git remote get-url origin 2>/dev/null | sed -E 's#/*$##; s#\.git$##; s#^.*[:/]([^/]+/[^/]+)$#\1#')
-  [ -n "$r" ] && remote=" #[fg=$muted]($(trunc "$r" 32))"
+  [ -n "$r" ] && remote=" #[fg=$muted] $(trunc "$r" 32)"
 fi
 
-printf '#[fg=%s,bold] %s#[nobold]%s%s%s #[fg=%s,nobold]│' \
-  "$branch_color" "$(trunc "$head" 28)" "$sync" "$dirty" "$remote" "$border"
+printf '%s#[fg=%s,bold] %s#[nobold]%s%s%s%s' \
+  "$open" "$branch_color" "$(trunc "$head" 28)" "$sync" "$dirty" "$remote" "$close"
