@@ -1,5 +1,6 @@
 chpwd() {
     if [[ "$PWD" == "$HOME/projects/"* ]]; then
+        echo "hello"
         if [[ -d ".git" ]]; then
             echo ""$COLOR_GREEN"[git tracked][$PWD]"
             echo ""$COLOR_GREEN"$(git remote -v)"$COLOR_RESET""
