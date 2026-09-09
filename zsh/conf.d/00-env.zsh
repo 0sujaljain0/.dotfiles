@@ -3,6 +3,11 @@ export MNET="$HOME/main/work/projects/mnet/"
 export MANPAGER='nvim +Man!'
 export FONTDIR=/Users/sujal.ja/Library/Fonts
 
+# RUST
+. "$HOME/.cargo/env"
+. /home/herdcontrarian/export-esp.sh
+#
+
 # Go
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go

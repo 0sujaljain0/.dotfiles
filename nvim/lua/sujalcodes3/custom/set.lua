@@ -10,8 +10,8 @@ vim.opt.wrap = false
 -- line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.guicursor = ""
--- vim.opt.guicursor:append("i:hor40-Cursor/lCursor")
+--vim.opt.guicursor = ""
+vim.opt.guicursor:append("i:hor40-Cursor/lCursor")
 --vim.api.nvim_set_hl(0, 'TermCursor', { fg = '#FFFFFF', bg = '#FF0000' })
 
 vim.opt.listchars = {eol = '↵', tab = '  '}
