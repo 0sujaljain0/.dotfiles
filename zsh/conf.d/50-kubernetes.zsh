@@ -2,7 +2,7 @@ command -v kubectl &>/dev/null || return
 
 eval "$(kubectl completion zsh)"
 
-function k() { kubectl "$@" }
+function k() { kubecolor "$@" }
 alias ktx="kubectx"
 alias kns="kubens"
 alias kgw="kubectl get pods -o wide --watch"
